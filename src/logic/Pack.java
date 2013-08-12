@@ -112,12 +112,15 @@ public class Pack {
     
     public Item selectItem(String name){
         Item item = null;
+        //System.out.println("select");
         boolean found = false;
         Iterator it = this.items.iterator();
         while(it.hasNext() && !found){
             item = (Item) it.next();
+            //System.out.println("Iterate");
             if(name.equals(item.getName())){
                 found = true;
+                //System.out.println("found");
             }
         }
         return item;

@@ -89,7 +89,7 @@ public class Dragon {
      * Method for adding levels to the dragon
      */
     public void addLevel(){
-        this.level =+ 1;
+        this.level++;
         // TODO - add code to change dragons attributes
         // Change this method to private perhaps? It isn't needed from outside.
     }
@@ -110,8 +110,8 @@ public class Dragon {
         String output = "";
         if (this.experience + expGain >= this.levels[this.level])
         {
-            addLevel();
             this.experience = this.experience + expGain - this.levels[this.level];
+            addLevel();
             output += "Congratulations you are now at level " + this.level + "!!\n";
         } else
         {

@@ -20,6 +20,7 @@ public class DragonCLI {
     public DragonCLI(Dragon d, Pack p)
     {
         this.d = d;
+        this.p = p;
         String[] com = {"help", "feed", "play", "train", "info", "player"};
         this.commands = com;
         this.commandInterface();
@@ -68,22 +69,18 @@ public class DragonCLI {
     private void feed() {
         String output = "";
         Item i = null;
-        try {
-            i = p.selectItem("food");
-        } catch (Exception e)
-        {
-            
-        }
+        i = p.selectItem("food");
         if (i != null)
         {
             output += "You try to feed " + d.getName() + "\n";
+            p.useItem(i);
             output += d.addExp(3);
         } else
         {
             output += "You do not have any food to feed " + d.getName() + "\n";
-            output += "You have to buy some from the pack menu";
+            output += "You have to buy some from the pack menu\n";
         }
-        System.out.println(output);
+        System.out.print(output);
     }
 
     private void play() {
@@ -95,9 +92,9 @@ public class DragonCLI {
         } else
         {
             output += d.getName() + "is not a high enough level for you to play\n";
-            output += "Try again when you are level 3 or above";
+            output += "Try again when you are level 3 or above\n";
         }
-        System.out.println(output);
+        System.out.print(output);
     }
 
     private void train() {
@@ -109,9 +106,9 @@ public class DragonCLI {
         } else
         {
             output += d.getName() + "is not a high enough level for you to train\n";
-            output += "Try again when you are level 5 or above";
+            output += "Try again when you are level 5 or above\n";
         }
-        System.out.println(output);
+        System.out.print(output);
     }
 
     private void getInfo() {

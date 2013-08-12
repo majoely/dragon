@@ -50,6 +50,8 @@ public class PlayerCLI {
                         break;
                 case "exit" : exit = goToExit();
                         break;
+                case "addgold" : p.getPack().addGold(20);
+                        break;
                 default : System.out.println("Invalid command");
                         System.out.println("enter help to see commands");
                         break;

@@ -1,8 +1,7 @@
 package cli;
 
 import java.util.*;
-import logic.Item;
-import logic.Pack;
+import logic.*;
 
 /**
  * @version v0.1 - added most of the code
@@ -87,17 +86,33 @@ public class PackCLI {
     private void buy(){
         System.out.println("Please select an item to buy- type cancel to stop");
         //print items that can be purchased along with price
+        System.out.println("Items for purchase: food:10g toy:35g equip:80g");
         Scanner pick = new Scanner(System.in);
+        boolean finished = false;
         String command = pick.nextLine();
-        while(!command.equals("cancel")){
-            Item temp = inventory.selectItem(command);
+        while(!command.equals("cancel") && !finished){
+            Item temp = null;
+            switch(command)
+            {
+                case "food" : temp = new Food("food", "used to feed dragon", 10, 10);
+                    break;
+                case "toy" : temp = new Weapon("toy", "used to play with dragon", 35, 10);
+                    break;
+                case "equip" : temp = new Armour("equip", "used to train dragon", 80, 10);
+                    break;
+                default : System.out.println("Invalid item!");
+            }
             if(temp != null && temp.getValue() < inventory.getGold()){
                 inventory.buyItem(temp);
+                finished = true;
+                System.out.println("Congratulations you have just purchased a " + temp.getName());
+                System.out.println("You currently have " + inventory.getGold() + " gold left");
             }
             else{
                 System.out.println("You can't purchase that - type cancel to continue");
+                command = pick.nextLine();
             }
-            command = pick.nextLine();
+            
         }
     }
     

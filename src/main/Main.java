@@ -22,6 +22,8 @@ public class Main {
         String dName = in.nextLine();
         Dragon dra = new Dragon(dName);
         Pack pac = new Pack(20);
+        Item f = new Food("food", "used to feed dragon", 10, 10);
+        pac.addItem(f);
         Player pla = new Player(pName, pac, dra);
         PlayerCLI pcli = new PlayerCLI(pla);
         
