@@ -68,8 +68,7 @@ public class DragonCLI {
 
     private void feed() {
         String output = "";
-        Item i = null;
-        i = p.selectItem("food");
+        Item i = p.selectItem("food");
         if (i != null)
         {
             output += "You try to feed " + d.getName() + "\n";
@@ -87,8 +86,14 @@ public class DragonCLI {
        String output = "";
         if (d.getLevel() > 2)
         {
+            int xp = 5;
+            Item i = p.selectItem("toy");
+            if (i != null)
+            {
+                xp += 3;
+            }
             output += "You try to play " + d.getName() + "\n";
-            output += d.addExp(5);
+            output += d.addExp(xp);
         } else
         {
             output += d.getName() + "is not a high enough level for you to play\n";
@@ -101,8 +106,14 @@ public class DragonCLI {
         String output = "";
         if (d.getLevel() > 4)
         {
+            int xp = 8;
+            Item i = p.selectItem("toy");
+            if (i != null)
+            {
+                xp += 6;
+            }
             output += "You try to train " + d.getName() + "\n";
-            output += d.addExp(8);
+            output += d.addExp(xp);
         } else
         {
             output += d.getName() + "is not a high enough level for you to train\n";

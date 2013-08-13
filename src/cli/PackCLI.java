@@ -68,6 +68,7 @@ public class PackCLI {
         Scanner pick = new Scanner(System.in);
         String command = pick.nextLine();
         while(!command.equals("cancel")){
+            System.out.print("Sell: ");
             Item temp = inventory.selectItem(command);
             if(temp != null){
                 inventory.sellItem(temp);
@@ -92,6 +93,7 @@ public class PackCLI {
         String command = pick.nextLine();
         while(!command.equals("cancel") && !finished){
             Item temp = null;
+            System.out.print("Buy: ");
             switch(command)
             {
                 case "food" : temp = new Food("food", "used to feed dragon", 10, 10);
