@@ -96,11 +96,11 @@ public class PackCLI {
             System.out.print("Buy: ");
             switch(command)
             {
-                case "food" : temp = new Food("food", "used to feed dragon", 10, 10);
+                case "food" : temp = new Item("food", "used to feed dragon", 10);
                     break;
-                case "toy" : temp = new Weapon("toy", "used to play with dragon", 35, 10);
+                case "toy" : temp = new Item("toy", "used to play with dragon", 35);
                     break;
-                case "equip" : temp = new Armour("equip", "used to train dragon", 80, 10);
+                case "equip" : temp = new Item("equip", "used to train dragon", 80);
                     break;
                 default : System.out.println("Invalid item!");
             }
