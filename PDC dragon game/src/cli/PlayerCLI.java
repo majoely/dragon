@@ -6,6 +6,8 @@ package cli;
 
 import java.util.Scanner;
 import logic.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -51,6 +53,8 @@ public class PlayerCLI {
                 case "exit" : exit = goToExit();
                         break;
                 case "addgold" : p.getPack().addGold(20);
+                        break;
+                case "tutorial" : showTutorial();
                         break;
                 default : System.out.println("Invalid command");
                         System.out.println("enter help to see commands");
@@ -101,5 +105,14 @@ public class PlayerCLI {
             exit = true;
         }
         return exit;
+    }
+    
+    private void showTutorial(){
+        File file = new File("src/main/playerTutorial");
+        Scanner out = new Scanner(file);
+        while (out.hasNext())
+        {
+            System.out.println(out.nextLine());
+        }
     }
 }
