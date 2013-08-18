@@ -23,7 +23,7 @@ public class Shop{
          addItem(new Item("Food", "Top grade Dragon food", 10));
      }
      
-     public addItem(Item item){
+     public void addItem(Item item){
          shopInventory.add(item);
      }
      
