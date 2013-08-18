@@ -1,5 +1,8 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Shop{
     
     /**
@@ -10,14 +13,14 @@ public class Shop{
      * reading from a text file
      */
      
-     private Arraylist<Item> shopInventory;
+     private ArrayList<Item> shopInventory;
      
      
      public Shop(int level){
          if(level == 1){
-             addItem("Copper Chestplate", "Better than nothing... slightly", 20);
+             addItem(new Item("Copper Chestplate", "Better than nothing... slightly", 20));
          }
-         addItem("Food", "Top grade Dragon food", 10);
+         addItem(new Item("Food", "Top grade Dragon food", 10));
      }
      
      public addItem(Item item){
@@ -28,7 +31,7 @@ public class Shop{
         Item item = null;
         //System.out.println("select");
         boolean found = false;
-        Iterator it = this.items.iterator();
+        Iterator it = this.shopInventory.iterator();
         while(it.hasNext() && !found){
             item = (Item) it.next();
             //System.out.println("Iterate");
