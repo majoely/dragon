@@ -84,39 +84,64 @@ public class PackCLI {
     /*
      * Method for buying items
      */
-    private void buy(){
+    // private void buy(){
+    //     System.out.println("Please select an item to buy- type cancel to stop");
+    //     // add shop inventory
+    //     System.out.println("Items for purchase: food:10g toy:35g equip:80g");
+    //     Scanner pick = new Scanner(System.in);
+    //     boolean finished = false;
+    //     String command = pick.nextLine();
+    //     while(!command.equals("cancel") && !finished){
+    //         Item temp = null;
+    //         System.out.print("Buy: ");
+    //         switch(command)
+    //         {
+    //             case "food" : temp = new Item("food", "used to feed dragon", 10);
+    //                 break;
+    //             case "toy" : temp = new Item("toy", "used to play with dragon", 35);
+    //                 break;
+    //             case "equip" : temp = new Item("equip", "used to train dragon", 80);
+    //                 break;
+    //             default : System.out.println("Invalid item!");
+    //         }
+    //         if(temp != null && temp.getValue() < inventory.getGold()){
+    //             inventory.buyItem(temp);
+    //             finished = true;
+    //             System.out.println("Congratulations you have just purchased a " + temp.getName());
+    //             System.out.println("You currently have " + inventory.getGold() + " gold left");
+    //         }
+    //         else{
+    //             System.out.println("You can't purchase that - type cancel to continue");
+    //             command = pick.nextLine();
+    //         }
+            
+    //     }
+    // }
+    
+    /*
+     * second buy attempt
+     */
+     private void buy(){
         System.out.println("Please select an item to buy- type cancel to stop");
-        //print items that can be purchased along with price
-        System.out.println("Items for purchase: food:10g toy:35g equip:80g");
+        Shop shop = new Shop(1); // add method for getting dragon level
+        printShop();
         Scanner pick = new Scanner(System.in);
-        boolean finished = false;
         String command = pick.nextLine();
-        while(!command.equals("cancel") && !finished){
-            Item temp = null;
+        while(!command.equals("cancel")){
             System.out.print("Buy: ");
-            switch(command)
-            {
-                case "food" : temp = new Item("food", "used to feed dragon", 10);
-                    break;
-                case "toy" : temp = new Item("toy", "used to play with dragon", 35);
-                    break;
-                case "equip" : temp = new Item("equip", "used to train dragon", 80);
-                    break;
-                default : System.out.println("Invalid item!");
-            }
-            if(temp != null && temp.getValue() < inventory.getGold()){
+            Item temp = shop.selectItem(command);
+            if(temp != null && (invetory.getGold() > (temp.getValue() * 1.2))){
                 inventory.buyItem(temp);
-                finished = true;
-                System.out.println("Congratulations you have just purchased a " + temp.getName());
-                System.out.println("You currently have " + inventory.getGold() + " gold left");
+            }
+            if(temp == null){
+                System.out.println("We don't sell that here - type cancel to continue");
             }
             else{
-                System.out.println("You can't purchase that - type cancel to continue");
-                command = pick.nextLine();
+                System.out.println("You don't have enough gold - type cancel to continue");
             }
-            
+            command = pick.nextLine();
         }
-    }
+     }
     
     /*
      * Method for using items
@@ -149,5 +174,20 @@ public class PackCLI {
         }
         System.out.print("\n");
         System.out.println("Gold: " + inventory.getGold());
+    }
+    
+    private void printShop(){
+        String[] invent = shop.getInventoryNames();
+        if(invent.length == 0){
+            system.out.println("shop is closed");
+        }
+        else{
+            for (int i = 0; i < invent.length; i++)
+                {
+                    System.out.print(invent[i] + " ");
+                }
+            System.out.print("\n");
+            System.out.println("Gold: " + inventory.getGold());
+        }
     }
 }
