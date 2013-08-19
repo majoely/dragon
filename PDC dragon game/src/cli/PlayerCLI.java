@@ -27,7 +27,7 @@ public class PlayerCLI {
     public PlayerCLI(Player p) throws FileNotFoundException
     {
         this.p = p;
-        String[] com = {"help", "name", "pack", "dragon", "quests", "exit"};
+        String[] com = {"help", "name", "pack", "dragon", "quests", "save", "exit"};
         this.commands = com;
         File file = new File("src/main/playerTutorial");
         Scanner out = new Scanner(file);
@@ -77,6 +77,11 @@ public class PlayerCLI {
                                         Logger.getLogger(PlayerCLI.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                         break;
+                case "save" :try {
+                                    save();
+                                } catch (FileNotFoundException ex) {
+                                    Logger.getLogger(PlayerCLI.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                 default : System.out.println("Invalid command");
                         System.out.println("enter help to see commands");
                         break;
@@ -145,7 +150,7 @@ public class PlayerCLI {
         save += this.p.getDragon().toString();
         save += this.p.getPack().toString();
         
-        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
+        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save", true));
         pw.print(save);
     }
 }
