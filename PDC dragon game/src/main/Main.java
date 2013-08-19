@@ -23,7 +23,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.println("Would you like to load your game?");
         String ans = "";
-        while (!ans.equals("yes") || !ans.equals("no"))
+        while (!ans.equals("yes") && !ans.equals("no"))
         {
             System.out.println("yes or no");
             ans = in.nextLine();
