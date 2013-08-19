@@ -8,8 +8,11 @@ import java.util.Scanner;
 import logic.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.Main;
 
 /**
  *
@@ -21,12 +24,24 @@ public class PlayerCLI {
     private String[] commands;
 
     @SuppressWarnings("empty-statement")
-    public PlayerCLI(Player p)
+    public PlayerCLI(Player p) throws FileNotFoundException
     {
         this.p = p;
         String[] com = {"help", "name", "pack", "dragon", "quests", "exit"};
         this.commands = com;
-        //System.out.println("created player interface");
+        File file = new File("src/main/playerTutorial");
+        Scanner out = new Scanner(file);
+        while (out.hasNext())
+        {
+            
+            System.out.println(out.nextLine());
+            try {
+                Thread.sleep(1000);
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         this.commandInterface();
     }
 
@@ -121,5 +136,16 @@ public class PlayerCLI {
         {
             System.out.println(out.nextLine());
         }
+    }
+    
+    private void save() throws FileNotFoundException
+    {
+        String save = "" + System.currentTimeMillis();
+        save += this.p.toString();
+        save += this.p.getDragon().toString();
+        save += this.p.getPack().toString();
+        
+        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
+        pw.print(save);
     }
 }

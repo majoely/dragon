@@ -23,6 +23,12 @@ public class Pack {
         this.items = new ArrayList<>();
     }
     
+    public Pack(int gold, ArrayList<Item> items)
+    {
+        this.gold = gold;
+        this.items = items;
+    }
+    
     /**
      * The method to get the number of gold that is currently in the pack
      * 
@@ -126,4 +132,13 @@ public class Pack {
         return item;
     }
     
+    @Override
+    public String toString()
+    {
+        String save = this.gold + "\n";
+        for (Item item : items) {
+            save += item.getName() + "\n";
+        }
+        return save;
+    }
 }

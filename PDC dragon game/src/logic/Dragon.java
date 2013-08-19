@@ -6,18 +6,17 @@
  * This class is to be used to create a players pet
  */
 public class Dragon {
+    //Other attributes
+    private String name;
+    private int experience;
+    private int level;
     //Combat atributes
     private int maxHealth;
     private int health;
     private int attack;
     private int defense; 
-    
-    //Other attributes
-    private int experience;
-    private int level;
     // High hunger is bad. 0.0 is a happy fed pet
     private double hunger;   
-    private String name;
     private int[] levels;
     
     /*
@@ -34,6 +33,19 @@ public class Dragon {
         this.experience = 0;
         this.level = 0;
         this.hunger = 0;
+        int[] levs = {10, 14, 18, 24, 30, 36, 44, 52, 60, 70};
+        this.levels = levs;
+    }
+    
+    public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, int hung){
+        this.name = name;
+        this.health = health;
+        this.maxHealth = maxH;
+        this.defense = def;
+        this.attack = att;
+        this.experience = exp;
+        this.level = lev;
+        this.hunger = hung;
         int[] levs = {10, 14, 18, 24, 30, 36, 44, 52, 60, 70};
         this.levels = levs;
     }
@@ -117,8 +129,7 @@ public class Dragon {
         {
             this.experience += expGain;
         }
-        output += "You now have " + this.experience + "xp. Your next level is " 
-                + this.levels[this.level] + "xp points away\n";
+        output += "You now have " + this.experience + "xp.\n";
         return output;
     }
     
@@ -170,5 +181,17 @@ public class Dragon {
         this.name = name;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        String save = name + "\n";
+        save += experience + "\n";
+        save += level + "\n";
+        save += maxHealth + "\n";
+        save += health + "\n";
+        save += attack + "\n";
+        save += defense + "\n";
+        save += hunger + "\n";
+        return save;
+    }
 }

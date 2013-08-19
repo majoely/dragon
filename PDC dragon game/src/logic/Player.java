@@ -73,7 +73,7 @@ public class Player implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("\nHere have some money.\nGold += " + (10 + (1 * this.dragon.getLevel())));
+            System.out.print("\nHere have some money.\nGold += " + (10 + (1 * this.dragon.getLevel())));
             pack.addGold(10 + (1 * this.dragon.getLevel()));
         }
     }
@@ -81,6 +81,14 @@ public class Player implements Runnable {
     public void stop()
     {
         this.stop = true;
+    }
+    
+    @Override
+    public String toString()
+    {
+        String save = this.name;
+        save += "\n";
+        return save;
     }
  
 }
