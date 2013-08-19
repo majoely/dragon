@@ -8,6 +8,8 @@ import java.util.Scanner;
 import logic.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,7 +56,11 @@ public class PlayerCLI {
                         break;
                 case "addgold" : p.getPack().addGold(20);
                         break;
-                case "tutorial" : showTutorial();
+                case "tutorial" :try {
+                                        showTutorial();
+                                    } catch (FileNotFoundException ex) {
+                                        Logger.getLogger(PlayerCLI.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                         break;
                 default : System.out.println("Invalid command");
                         System.out.println("enter help to see commands");
@@ -102,12 +108,13 @@ public class PlayerCLI {
         }
         if(input.equals("yes"))
         {
+            p.stop();
             exit = true;
         }
         return exit;
     }
     
-    private void showTutorial(){
+    private void showTutorial() throws FileNotFoundException{
         File file = new File("src/main/playerTutorial");
         Scanner out = new Scanner(file);
         while (out.hasNext())

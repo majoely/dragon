@@ -44,9 +44,9 @@ public class Shop{
     }
     
     public String[] getInventoryNames(){
-        String[] names = new String[items.size()];
-        for(int x = 0; x < items.size(); x++ ){
-            Item temp = items.get(x);
+        String[] names = new String[this.shopInventory.size()];
+        for(int x = 0; x < this.shopInventory.size(); x++ ){
+            Item temp = this.shopInventory.get(x);
             names[x] = temp.getName();
         }
         return names;

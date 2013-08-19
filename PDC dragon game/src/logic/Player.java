@@ -1,15 +1,19 @@
 package logic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Joel Compton
  */
-public class Player {
+public class Player implements Runnable {
     
     private String name;
     private Pack pack;
     private Dragon dragon;
     private QuestLedger ql;
+    private boolean stop;
     
     /**
      * Constructor to create player
@@ -24,6 +28,7 @@ public class Player {
         this.pack = pack;
         this.dragon = dragon;
         this.ql = ql;
+        this.stop = false;
     }
     
     /**
@@ -57,6 +62,25 @@ public class Player {
     public QuestLedger getQuestLedger()
     {
         return this.ql;
+    }
+
+    @Override
+    public void run() {
+        while(!stop)
+        {
+            try { 
+                Thread.sleep(60000 * 10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("\nHere have some money.\nGold += " + (10 + (1 * this.dragon.getLevel())));
+            pack.addGold(10 + (1 * this.dragon.getLevel()));
+        }
+    }
+    
+    public void stop()
+    {
+        this.stop = true;
     }
  
 }
