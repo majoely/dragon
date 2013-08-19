@@ -71,7 +71,7 @@ public class Player implements Runnable {
             try { 
                 Thread.sleep(60000 * 10);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
             System.out.print("\nHere have some money.\nGold += " + (10 + (1 * this.dragon.getLevel())));
             pack.addGold(10 + (1 * this.dragon.getLevel()));

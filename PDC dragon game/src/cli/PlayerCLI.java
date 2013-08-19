@@ -10,9 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import main.Main;
 
 /**
  *
@@ -39,7 +36,7 @@ public class PlayerCLI {
                 Thread.sleep(1000);
                 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         }
         this.commandInterface();
@@ -71,20 +68,21 @@ public class PlayerCLI {
                         break;
                 case "addgold" : p.getPack().addGold(20);
                         break;
-                case "tutorial" :try {
+                case "tutorial" : try {
                                         showTutorial();
                                     } catch (FileNotFoundException ex) {
-                                        Logger.getLogger(PlayerCLI.class.getName()).log(Level.SEVERE, null, ex);
+                                        ex.printStackTrace();
                                     }
                         break;
-                case "save" :try {
+                case "save" : try {
                                     save();
                                 } catch (FileNotFoundException ex) {
-                                    Logger.getLogger(PlayerCLI.class.getName()).log(Level.SEVERE, null, ex);
+                                    ex.printStackTrace();
                                 }
+                    break;
                 default : System.out.println("Invalid command");
-                        System.out.println("enter help to see commands");
-                        break;
+                          System.out.println("enter help to see commands");
+                       break;
                 
             }
             
@@ -145,12 +143,12 @@ public class PlayerCLI {
     
     private void save() throws FileNotFoundException
     {
-        String save = "" + System.currentTimeMillis();
+        String save = "" + System.currentTimeMillis() + "\n";
         save += this.p.toString();
         save += this.p.getDragon().toString();
         save += this.p.getPack().toString();
-        
+        System.out.println(save);
         PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save", true));
-        pw.print(save);
+        pw.write(save);
     }
 }
