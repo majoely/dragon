@@ -126,7 +126,7 @@ public class DragonCLI {
         String output = "";
         output += "Name: " + d.getName() + "\n";
         output += "Level: " + d.getLevel() + "\n";
-        System.out.println(output);
+        System.out.print(output);
     }
     
 }
