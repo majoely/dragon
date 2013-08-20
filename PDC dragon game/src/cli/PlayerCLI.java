@@ -149,6 +149,7 @@ public class PlayerCLI {
         save += this.p.getPack().toString();
         System.out.println(save);
         PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save", true));
-        pw.write(save);
+        pw.println(save);
+        pw.close();
     }
 }
