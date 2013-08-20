@@ -33,7 +33,7 @@ public class PlayerCLI {
             
             System.out.println(out.nextLine());
             try {
-                Thread.sleep(1000);
+                Thread.sleep(400);
                 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
@@ -146,9 +146,10 @@ public class PlayerCLI {
         String save = "" + System.currentTimeMillis() + "\n";
         save += this.p.toString();
         save += this.p.getDragon().toString();
+        //save += this.p.getQuestLedger().toString();
         save += this.p.getPack().toString();
         System.out.println(save);
-        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save", true));
+        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
         pw.println(save);
         pw.close();
     }

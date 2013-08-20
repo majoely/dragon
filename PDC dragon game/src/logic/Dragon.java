@@ -37,7 +37,7 @@ public class Dragon {
         this.levels = levs;
     }
     
-    public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, int hung){
+    public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, double hung){
         this.name = name;
         this.health = health;
         this.maxHealth = maxH;

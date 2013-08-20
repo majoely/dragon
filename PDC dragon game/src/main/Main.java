@@ -42,7 +42,7 @@ public class Main {
             int dHealth = out.nextInt();
             int dAttack = out.nextInt();
             int dDefense = out.nextInt();
-            int dHunger = out.nextInt();
+            double dHunger = out.nextDouble();
             int pacGold = out.nextInt();
             out.nextLine();
             ArrayList<Item> item = new ArrayList<>();
