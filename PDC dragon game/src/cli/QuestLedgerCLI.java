@@ -1,5 +1,9 @@
 package cli;
 
+import java.util.ArrayList;
+import logic.*;
+import java.util.Scanner;
+
 public class QuestLedgerCLI{
     
     private QuestLedger questLog;

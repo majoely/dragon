@@ -48,9 +48,16 @@ public class QuestLedger {
     }
     
     /*
+    *
+    */
+    public ArrayList<Quest> listCompleted(){
+        return this.currentQuests;
+    }
+    
+    /*
      * Return the list of quests completed by the player so far
      */
     public ArrayList<Quest> listCompletedQuests(){
-        return completedQuests;
+        return this.completedQuests;
     }
 }
