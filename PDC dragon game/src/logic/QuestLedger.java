@@ -25,6 +25,7 @@ public class QuestLedger {
         this.completedQuests = new ArrayList<>();
         
         Quest testQuest = new Quest("First one done", "Test quest", null, null);
+        Quest testQuest2 = new Quest("Second one done", "Test quest 2", null, null);
         completedQuests.add(testQuest);
     }
     

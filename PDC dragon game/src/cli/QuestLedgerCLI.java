@@ -64,7 +64,7 @@ public class QuestLedgerCLI{
         ArrayList<Quest>tempFin = questLog.listCompletedQuests();
         int i = 0;
         while(i < tempFin.size()){
-            System.out.println(i + ": " + tempFin.get(i));
+            System.out.println(i + ": " + tempFin.get(i).getName());
         }
     }
     
