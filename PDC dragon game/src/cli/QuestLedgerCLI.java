@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class QuestLedgerCLI{
     
     private QuestLedger questLog;
+    String[] commands;
     
     @SuppressWarnings("empty-statement")
     public QuestLedgerCLI(QuestLedger questLog){
@@ -19,7 +20,7 @@ public class QuestLedgerCLI{
      private void commandInterface(){
         Scanner in = new Scanner(System.in);
         this.printCommands();
-        String input =null;
+        String input = null;
         boolean exit = false;
         while(!exit){
             System.out.print("Quest: ");
@@ -60,10 +61,10 @@ public class QuestLedgerCLI{
      * 
      */
     void listCompleted(){
-        ArrayList tempFin = questLog.listCompletedQuests();
+        ArrayList<Quest>tempFin = questLog.listCompletedQuests();
         int i = 0;
-        while(i < tempFin.length()){
-            System.out.prinln(i + ": " + tempFin.get(i).getName());
+        while(i < tempFin.size()){
+            System.out.println(i + ": " + tempFin.get(i));
         }
     }
     
