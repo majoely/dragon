@@ -61,7 +61,7 @@ public class QuestLedger {
     /*
      * Return the list of quests completed by the player so far
      */
-    public void getCompletedQuests(){
+    public String[] getCompletedQuests(){
         String[] names = new String[completedQuests.size()];
         for(int x = 0; x < completedQuests.size(); x++){
             Quest temp = completedQuests.get(x);

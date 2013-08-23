@@ -30,7 +30,7 @@ public class QuestLedgerCLI{
                 break;
                 case "current" : listCurrent();
                 break;
-                case "completed" : questlog.listCompletedQuests();
+                case "completed" : listCompleted();
                 break;
                 default : System.out.println("invalid command");
                 System.out.println("enter help to see commands");
