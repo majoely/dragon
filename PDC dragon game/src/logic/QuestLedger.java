@@ -23,6 +23,9 @@ public class QuestLedger {
         this.currentQuests = cQ;
         this.unavailQuests = uQ;
         this.completedQuests = new ArrayList<>();
+        
+        Quest testQuest = new Quest("First one done", "Test quest", null, null);
+        completedQuests.add(testQuest);
     }
     
     /*
