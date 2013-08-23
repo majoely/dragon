@@ -10,7 +10,7 @@ public class QuestLedgerCLI{
     
     @SuppressWarnings("empty-statement")
     public QuestLedgerCLI(QuestLedger questLog){
-        this.questLog = questLog
+        this.questLog = questLog;
         String[] com = {"help", "list"};
         this.commands = com;
         this.commandInterface();
