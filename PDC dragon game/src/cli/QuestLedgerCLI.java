@@ -30,7 +30,7 @@ public class QuestLedgerCLI{
                 break;
                 case "current" : listCurrent();
                 break;
-                case "completed" : listCompleted();
+                case "completed" : questlog.listCompletedQuests();
                 break;
                 default : System.out.println("invalid command");
                 System.out.println("enter help to see commands");
@@ -61,12 +61,14 @@ public class QuestLedgerCLI{
      * 
      */
     private void listCompleted(){
-        ArrayList<Quest> tempFin = questLog.listCompletedQuests();
-        int i = 0;
-        while(i < tempFin.size()){
-            String name = tempFin.get(i -1).getName();
-            System.out.println(i + ": " + name);
-            --i;
+        String[] tempFin = questLog.getCompletedQuests();
+        if(tempFin.length == 0){
+            System.out.println("You haven't finished any quests yet!");
+        }
+        else{
+            for (int i = 0; i < tempFin.length; i++){
+            System.out.println(i + ": " + tempFin[i]);
+            }
         }
     }
     
