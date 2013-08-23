@@ -31,7 +31,7 @@ public class Quest {
         this.challenges = challenges;
         this.complete = false;
     }
-    
+     
     /**
      * Method to figure out what whether you are going to be going into a fight 
      * or challenge
@@ -59,4 +59,7 @@ public class Quest {
         return complete;
     }
     
+    public String getName(){
+        return this.name;
+    }
 }
