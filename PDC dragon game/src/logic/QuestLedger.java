@@ -23,43 +23,45 @@ public class QuestLedger {
         this.currentQuests = cQ;
         this.unavailQuests = uQ;
         this.completedQuests = new ArrayList<>();
-        
-        Quest testQuest = new Quest("First one done", "Test quest", null, null);
-        Quest testQuest2 = new Quest("Second one done", "Test quest 2", null, null);
-        this.completedQuests.add(testQuest);
-        this.completedQuests.add(testQuest2);
     }
     
-    /*
+    /**
      * 
      */
     public void questLedger(ArrayList<Quest> unavail){
         
     }
     
-    /*
-     * 
+    /**
+     * Takes the index number of the quest to find it
      */
-    public void goToQuest(Quest q){
+    public void goToQuest(int i){
         
     }
     
-    /*
+    /**
      * 
      */
     public void levelUp(int level){
         
     }
     
-    /*
-    *
-    */
-    public ArrayList<Quest> listCompleted(){
-        return this.currentQuests;
+    /**
+     * Returns an array of the Current quests the player can go on
+     * @returns String[] of quests names
+     */
+    public String[] getCurrent(){
+        String[] names = new String[currentQuests.size()];
+        for(int x = 0; x < currentQuests.size(); x++){
+            Quest temp = currentQuests.get(x);
+            names[x] = temp.getName();
+        }
+        return names;
     }
     
-    /*
+    /**
      * Return the list of quests completed by the player so far
+     * @returns String[] of quest names
      */
     public String[] getCompletedQuests(){
         String[] names = new String[completedQuests.size()];
