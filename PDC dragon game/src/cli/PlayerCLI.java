@@ -102,11 +102,10 @@ public class PlayerCLI {
         DragonCLI drag = new DragonCLI(p.getDragon(), p.getPack());
         drag = null;
     }
-
+ 
     private void goToQuestLedger() {
-        System.out.println("This feature is not available yet");
-        //QuestLedgerCLI ql = new QuestLedgerCLI(p.getQuestLedger());
-        //ql = null;
+        QuestLedgerCLI ql = new QuestLedgerCLI(p.getQuestLedger());
+        ql = null;
     }
 
     private boolean goToExit() {
