@@ -60,7 +60,11 @@ public class QuestLedgerCLI{
      * 
      */
     void listCompleted(){
-        
+        ArrayList tempFin = questLog.listCompletedQuests();
+        int i = 0;
+        while(i < tempFin.length()){
+            System.out.prinln(i + ": " + tempFin.get(i).getName());
+        }
     }
     
 }
