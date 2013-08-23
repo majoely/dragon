@@ -12,7 +12,7 @@ public class QuestLedgerCLI{
     @SuppressWarnings("empty-statement")
     public QuestLedgerCLI(QuestLedger questLog){
         this.questLog = questLog;
-        String[] com = {"help", "list"};
+        String[] com = {"help", "current", "completed"};
         this.commands = com;
         this.commandInterface();
     }
@@ -53,18 +53,20 @@ public class QuestLedgerCLI{
     /*
      * 
      */
-    void listCurrent(){
+    private void listCurrent(){
         
     }
     
     /*
      * 
      */
-    void listCompleted(){
-        ArrayList<Quest>tempFin = questLog.listCompletedQuests();
+    private void listCompleted(){
+        ArrayList<Quest> tempFin = questLog.listCompletedQuests();
         int i = 0;
         while(i < tempFin.size()){
-            System.out.println(i + ": " + tempFin.get(i).getName());
+            String name = tempFin.get(i -1).getName();
+            System.out.println(i + ": " + name);
+            --i;
         }
     }
     
