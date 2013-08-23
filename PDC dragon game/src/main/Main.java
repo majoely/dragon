@@ -110,10 +110,10 @@ public class Main {
             Item f = new Item("food", "used to feed dragon", 10);
             pac.addItem(f);
             //Curt- Added Questledger to new players. Need to code for saves too I imagine
-            ArrayList<Quest> started = new ArrayList<Quest>();
-            ArrayList<Quest> unavail = new ArrayList<Quest>();
-            QuestLedger = new QuestLedger(started, unavail);
-            Player pla = new Player(pName, pac, dra);
+            ArrayList<Quest> started = new ArrayList<>();
+            ArrayList<Quest> unavail = new ArrayList<>();
+            QuestLedger ql = new QuestLedger(started, unavail);
+            Player pla = new Player(pName, pac, dra, ql);
             Thread t = new Thread(pla);
             t.start();
             PlayerCLI pcli = new PlayerCLI(pla);
