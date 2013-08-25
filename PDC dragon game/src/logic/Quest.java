@@ -12,7 +12,6 @@ public class Quest {
     private String name;
     private String description;
     private ArrayList<Fight> fights;
-    private ArrayList<Challenge> challenges;
     private boolean complete;
     
     /**
@@ -23,12 +22,11 @@ public class Quest {
      * @param fights List of fights that need to be completed
      * @param challenges List of challenges that need to be completed
      */
-    public Quest(String name, String description, ArrayList<Fight> fights, ArrayList<Challenge> challenges)
+    public Quest(String name, String description, ArrayList<Fight> fights)
     {
         this.name = name;
         this.description = description;
         this.fights = fights;
-        this.challenges = challenges;
         this.complete = false;
     }
      
@@ -65,5 +63,10 @@ public class Quest {
     
     public String getDescription(){
         return this.description;
+    }
+    
+    public Iterator<Fight> getFights()
+    {
+        return fights.iterator();
     }
 }

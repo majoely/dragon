@@ -19,13 +19,13 @@ public class Shop{
      public Shop(int level){
          for(int i = 0; i <= level; i++) {
              try {
-             File f = new File("src/main/item" + i);
-             Scanner in = new Scanner(f);
-             String name = in.nextLine();
-             String descript = in.nextLine();
-             int value = Integer.parseInt(in.nextLine());
-             addItem(new Item(name, descript, value));
-             in.close();
+                 File f = new File("src/main/item" + i);
+                 Scanner in = new Scanner(f);
+                 String name = in.nextLine();
+                 String descript = in.nextLine();
+                 int value = Integer.parseInt(in.nextLine());
+                 addItem(new Item(name, descript, value));
+                 in.close();
              } catch (Exception e) {
                  e.printStackTrace();
              }

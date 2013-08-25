@@ -9,13 +9,15 @@ public class Fight {
     
     private Dragon player;
     private Enemy badGuy; 
+    private Pack pack;
     
     /*
      * starts the fight between the player and enemy
      */
-    public Fight(Dragon d, Enemy bg){
+    public Fight(Dragon d, Enemy bg, Pack p){
         this.player = d;
-        this.badGuy = bg;        
+        this.badGuy = bg;  
+        this.pack = p;
     }
     
     /**
@@ -24,48 +26,43 @@ public class Fight {
      * the fight.
      * @return String Result of the fight
      */
-    public String conductFight()
+    public void conductFight()
     {
-        return "This fight needs to be sorted out";
+        int strike = 0;
+        while(player.getHealth() > 0 && badGuy.getHealth() > 0)
+        {
+            if (strike % 2 = 0)
+            {
+                System.out.println("Your foe strikes dealing " + badguy.giveDmg() + " damage.");
+                player.takeDmg(badGuy.giveDmg);
+                printStats();
+            } else
+            {
+                System.out.println("Your dragon attackes dealing " + player.giveDmg + " damage.");
+                badGuy.takeDmg(player.giveDmg);
+                printStats();
+            }
+            Thread.sleep(1000);
+            strike++;
+        }
+        if(player.getHealth() <= 0)
+        {
+            System.out.println("Your dragon has died, Game Over!");
+        } else
+        {
+            System.out.println("Your foe has been defeated, and you live to fight another day.");
+            System.out.println("You have recieved " + badGuy.getExp() + " xp!");
+            player.addExp(badGuy.getExp());
+            System.out.ptintln("You have received " + badGuy.getGold() + " gold!");
+            pack.addGold(badGuy.getGold());
+            System.out.println("You have recieved " + badGuy.getItem().getName());
+            pack.addItem(badGuy.getItem());
+        }
     }
     
-    /*
-     * Determines damage going to player
-     * @returns badDmg
-     */
-    public int attackPlayer(){
-        return 0;
-    }
-    
-    /*
-     * determines damage going to the badguy
-     * @returns goodDmg
-     */
-    public int attackBadGuy(){
-        return 0;
-    }
-    
-    /*
-     * Returns the amount of gold the player gets
-     * @returns gold
-     */
-    public int getGold(){
-        return 0;
-    }
-    
-    /*
-     * Returns the amount of exp the player gets
-     * @return experience
-     */
-    public int getExp(){
-        return 0;
-    }
-
-    /*
-     * if the player gets an item from the battle, this mehtod retrieves it
-     * @returns items
-     */
-    public Item getItem(){
-        return null;
+    private void printStats()
+    {
+        System.out.println("Dragon: " + player.getHealth() + "/" + player.getMaxHealth() + 
+            " Enemy: " + badGuy.getHealth() + "/" + badGuy.getMaxHealth());
     }
 }

@@ -80,6 +80,11 @@ public class Dragon {
         this.health =- dmg;
     }
     
+    public String getMaxHealth()
+    {
+        return this.maxHealth;
+    }
+    
     /*
      * adds to the maximum health pool for the dragon.
      * @param health, value to increase pool by

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class QuestLedgerCLI{
     
     private QuestLedger questLog;
-    String[] commands;
+    private String[] commands;
     
     @SuppressWarnings("empty-statement")
     public QuestLedgerCLI(QuestLedger questLog){
