@@ -103,7 +103,7 @@ public class Main {
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             }
             Pack pac = new Pack(40);

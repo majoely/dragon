@@ -17,10 +17,15 @@ public class Shop{
      
      
      public Shop(int level){
-         if(level == 1){
-             addItem(new Item("Copper Chestplate", "Better than nothing... slightly", 20));
+         for(int i = 0; i <= level; i++) {
+             File f = new File("src/main/item" + i);
+             Scanner in = new Scanner(f);
+             String name = in.nextLine();
+             String descript = in.nextLine();
+             int value = Integer.parseInt(in.nextLine());
+             addItem(new Item(name, descript, value));
+             in.close();
          }
-         addItem(new Item("Food", "Top grade Dragon food", 10));
      }
      
      public void addItem(Item item){
