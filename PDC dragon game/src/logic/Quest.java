@@ -62,4 +62,8 @@ public class Quest {
     public String getName(){
         return this.name;
     }
+    
+    public String getDescription(){
+        return this.description;
+    }
 }

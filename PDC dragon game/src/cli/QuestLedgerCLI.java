@@ -61,12 +61,13 @@ public class QuestLedgerCLI{
          Quest choice;
          listCurrent();
          Scanner quest = new Scanner(System.in);
-         String command = quest.nextLine(); //need to figure out how to have it take Strings and Ints for this one
+         String command = quest.nextLine();
          while(!command.equals("cancel")){
              System.out.print("Quest: ");
              //command needs to be an int before it gets to this point.
-             choice = goToQuest(command);
+             choice = questLog.goToQuest(command);
          }
+         System.out.println(choice.getDescription());
          //add code for starting QuestCLI/FightClI/ChallengeCLI/whatever the quest needs to do.
      }
     
