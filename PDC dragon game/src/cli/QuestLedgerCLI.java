@@ -57,8 +57,17 @@ public class QuestLedgerCLI{
      * Prompt the player for the index number of the quest to find and start it
      */
      private void startQuest(){
-         System.out.println("Enter the number of the quest you wish to go on");
+         System.out.println("Enter the number of the quest you wish to go on - enter cancel to stop");
+         Quest choice;
          listCurrent();
+         Scanner quest = new Scanner(System.in);
+         String command = quest.nextLine(); //need to figure out how to have it take Strings and Ints for this one
+         while(!command.equals("cancel")){
+             System.out.print("Quest: ");
+             //command needs to be an int before it gets to this point.
+             choice = goToQuest(command);
+         }
+         //add code for starting QuestCLI/FightClI/ChallengeCLI/whatever the quest needs to do.
      }
     
     /**

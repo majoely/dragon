@@ -142,6 +142,7 @@ public class PackCLI {
             }
             command = pick.nextLine();
         }
+        shop = null;
      }
     
     /*

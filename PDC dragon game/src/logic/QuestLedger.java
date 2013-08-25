@@ -35,8 +35,10 @@ public class QuestLedger {
     /**
      * Takes the index number of the quest to find it
      */
-    public void goToQuest(int i){
-        
+    public Quest goToQuest(int i){
+        Quest choice = null;
+        choice = currentQuests.get(i);
+        return choice;
     }
     
     /**
