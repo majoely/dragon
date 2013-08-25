@@ -53,7 +53,7 @@ public class QuestLedgerCLI{
     }
     
     /**
-     * allos the player to go on quests.
+     * allows the player to go on quests.
      * Prompt the player for the index number of the quest to find and start it
      */
      private void startQuest(){
@@ -63,12 +63,17 @@ public class QuestLedgerCLI{
          Scanner quest = new Scanner(System.in);
          String command = quest.nextLine();
          while(!command.equals("cancel")){
-             System.out.print("Quest: ");
-             int commandInt = Integer.parseInt(command);
-             choice = questLog.goToQuest(commandInt);
+            System.out.print("Quest: ");
+            int commandInt = Integer.parseInt(command);
+            choice = questLog.goToQuest(commandInt);
+            if(choice != null){
+                //add code to start fights/challenges
+               System.out.println(choice.getDescription());
+            }
+            else{
+             System.out.println("Please select a valid quest number");
          }
-         if(choice != null){
-            System.out.println(choice.getDescription());
+            command = quest.nextLine();
          }
          //add code for starting QuestCLI/FightClI/ChallengeCLI/whatever the quest needs to do.
      }
