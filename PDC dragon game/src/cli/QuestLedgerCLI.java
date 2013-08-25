@@ -58,16 +58,18 @@ public class QuestLedgerCLI{
      */
      private void startQuest(){
          System.out.println("Enter the number of the quest you wish to go on - enter cancel to stop");
-         Quest choice;
+         Quest choice = null;
          listCurrent();
          Scanner quest = new Scanner(System.in);
          String command = quest.nextLine();
          while(!command.equals("cancel")){
              System.out.print("Quest: ");
-             //command needs to be an int before it gets to this point.
-             choice = questLog.goToQuest(command);
+             int commandInt = Integer.parseInt(command);
+             choice = questLog.goToQuest(commandInt);
          }
-         System.out.println(choice.getDescription());
+         if(choice != null){
+            System.out.println(choice.getDescription());
+         }
          //add code for starting QuestCLI/FightClI/ChallengeCLI/whatever the quest needs to do.
      }
     
