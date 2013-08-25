@@ -67,8 +67,8 @@ public class QuestLedgerCLI{
             int commandInt = Integer.parseInt(command);
             choice = questLog.goToQuest(commandInt);
             if(choice != null){
-                //add code to start fights/challenges
-               System.out.println(choice.getDescription());
+                System.out.println(choice.getDescription());
+                choice.mission();
             }
             else{
              System.out.println("Please select a valid quest number");
