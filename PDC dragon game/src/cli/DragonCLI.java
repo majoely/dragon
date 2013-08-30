@@ -13,6 +13,7 @@ import logic.*;
  */
 public class DragonCLI {
     // hi
+    // good morrow
     private Dragon d;
     private Pack p;
     private String[] commands;
