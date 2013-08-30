@@ -11,7 +11,6 @@ public class Pack {
     
     private int gold;
     private ArrayList<Item> items;
-    private int dLevel;
     
     /**
      * Constructor to make pack for player to hold their items
