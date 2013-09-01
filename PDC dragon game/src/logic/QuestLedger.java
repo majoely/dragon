@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /** 
  *
@@ -9,73 +8,69 @@ import java.util.Iterator;
  */
 public class QuestLedger {
     
-    private ArrayList<Quest> currentQuests;
-    private ArrayList<Quest> completedQuests;
-    private ArrayList<Quest> unavailQuests;
+    private Quest quest;
+    private ArrayList<Quest> com;
+    private ArrayList<Quest> un;
     
     /**
-     * 
-     * @param cQ
-     * @param uQ 
+     * Initial constructor for when the game is started.
+     * @param uQ unavailble quests.
      */
-    public QuestLedger(ArrayList<Quest> cQ, ArrayList<Quest> uQ)
+    public QuestLedger(ArrayList<Quest> uQ)
     {
-        this.currentQuests = cQ;
-        this.unavailQuests = uQ;
-        this.completedQuests = new ArrayList<>();
-        
-        Quest test1 = new Quest("test", "it's a job", null, null);
-        Quest test2 = new Quest("test2", "Another job", null, null);
-        currentQuests.add(test1);
-        currentQuests.add(test2);
+        this.un = uQ;
+        this.quest = popNext();
+        this.com = new ArrayList<>();
     }
     
     /**
-     * 
-     */
-    public void questLedger(ArrayList<Quest> unavail){
-        
-    }
-    
-    /**
-     * Takes the index number of the quest to find it
-     */
-    public Quest goToQuest(int i){
-        Quest choice = null;
-        choice = currentQuests.get(i);
-        return choice;
-    }
-    
-    /**
-     * 
-     */
-    public void levelUp(int level){
-        
-    }
-    
-    /**
-     * Returns an array of the Current quests the player can go on
-     * @returns String[] of quests names
-     */
-    public String[] getCurrent(){
-        String[] names = new String[currentQuests.size()];
-        for(int x = 0; x < currentQuests.size(); x++){
-            Quest temp = currentQuests.get(x);
-            names[x] = temp.getName();
+     * Constructor for when the game is loaded
+     * @param uQ unavailable quests.
+     * @param n the number quest you are up to.
+     */ 
+    public QuestLedger(ArrayList<Quest> uQ, int n)
+    {
+        this.un = uQ;
+        this.com = new ArrayLixt<>();
+        this.quest = popNext();
+        for(int i = 0; i < n; i++)
+        {
+            this.quest.complete();
+            this.quest = popNext();
         }
-        return names;
     }
     
     /**
-     * Return the list of quests completed by the player so far
-     * @returns String[] of quest names
+     * Method to go to the next quest
+     * @return Quest the next quest to complete
+     */ 
+    public Quest goToQuest()
+    {
+        return this.quest;
+    }
+    
+    /**
+     * Method to cycle through to the next quest
      */
-    public String[] getCompletedQuests(){
-        String[] names = new String[completedQuests.size()];
-        for(int x = 0; x < completedQuests.size(); x++){
-            Quest temp = completedQuests.get(x);
-            names[x] = temp.getName();
+    public void popNext()
+    {
+        this.com.add(this.quest);
+        this.quest = this.un.remove(0);
+    }
+    
+    public String[] listCompleted()
+    {
+        String[] complete = new String[this.com.size()];
+        for(int i = 0; i < this.com.size() - 1; i++)
+        {
+            complete[i] = this.com.get(i).getName();
         }
-        return names;
+        return complete;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return this.com.size();
     }
 }

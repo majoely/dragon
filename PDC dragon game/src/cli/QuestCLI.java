@@ -54,13 +54,7 @@ public class QuestCLI {
     
     private boolean conductFight()
     {
-        Scanner in = new Scanner(System.in);
-        Iterator<Figjt> f = q.getFights();
-        while(f.hasNext())
-        {
-            f.conductFight();
-        }
-        return true;
+        this.q.mission();
     }
     
 }

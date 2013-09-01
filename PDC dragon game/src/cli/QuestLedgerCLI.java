@@ -57,25 +57,12 @@ public class QuestLedgerCLI{
      * Prompt the player for the index number of the quest to find and start it
      */
      private void startQuest(){
-         System.out.println("Enter the number of the quest you wish to go on - enter cancel to stop");
-         Quest choice = null;
-         listCurrent();
-         Scanner quest = new Scanner(System.in);
-         String command = quest.nextLine();
-         while(!command.equals("cancel")){
-            System.out.print("Quest: ");
-            int commandInt = Integer.parseInt(command);
-            choice = questLog.goToQuest(commandInt);
-            if(choice != null){
-                System.out.println(choice.getDescription());
-                choice.mission();
-            }
-            else{
-             System.out.println("Please select a valid quest number");
-         }
-            command = quest.nextLine();
-         }
-         //add code for starting QuestCLI/FightClI/ChallengeCLI/whatever the quest needs to do.
+        Quest q = questLog.goToQuest();
+        QuestCLI qcli = new QuestCLI(q);
+        if (q.isComplete())
+        {
+            questLog.popNext();
+        }
      }
     
     /**
@@ -97,7 +84,7 @@ public class QuestLedgerCLI{
      * method lists the current Quests completed by the player
      */
     private void listCompleted(){
-        String[] tempFin = questLog.getCompletedQuests();
+        String[] tempFin = questLog.listCompleted();
         if(tempFin.length == 0){
             System.out.println("You haven't finished any quests yet!");
         }
