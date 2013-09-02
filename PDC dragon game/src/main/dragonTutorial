@@ -1,0 +1,8 @@
+This is the Dragon menu. You can do all sorts of interactions with your
+dragon here!
+"help" - Prints a list of available commands
+"feed" - If you've got food in your pack, this will give it to your dragon
+"play" - Have a bit of fun with your dragon and help them learn
+"train" - Time to knuckle down and teach your dragon to fight
+"info" - Prints the information of your dragon
+"player" - Takes you back to the Player Menu

@@ -69,15 +69,8 @@ public class QuestLedgerCLI{
      * Lists the quests currently active for the player
      */
     private void listCurrent(){
-        String[] tempCur = questLog.getCurrent();
-        if(tempCur.length == 0){
-            System.out.println("You haven't got any active Quests");
-        }
-        else{
-            for(int i = 0; i < tempCur.length; i++){
-                System.out.println(i + ": " + tempCur[i]);
-            }
-        }
+        System.out.println(this.questLog.goToQuest().getName());
+        System.out.println(this.questLog.goToQuest().getDescription());
     }
     
     /**

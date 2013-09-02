@@ -80,7 +80,7 @@ public class Dragon {
         this.health =- dmg;
     }
     
-    public String getMaxHealth()
+    public int getMaxHealth()
     {
         return this.maxHealth;
     }

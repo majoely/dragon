@@ -1,13 +1,12 @@
 package cli;
 
-import java.util.ArrayList;
 import logic.*;
 import java.util.Scanner;
 
 public class QuestCLI {
     
     private Quest q;
-    private String[] comands;
+    private String[] commands;
     
     public QuestCLI(Quest q)
     {
@@ -55,6 +54,7 @@ public class QuestCLI {
     private boolean conductFight()
     {
         this.q.mission();
+        return this.q.isComplete();
     }
     
 }
