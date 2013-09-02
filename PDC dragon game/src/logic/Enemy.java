@@ -7,6 +7,9 @@ package logic;
  */
 public class Enemy {
     
+    //descriptive feilds
+    private String name;
+    
     //combat fields
     private int health;
     private int maxHealth;
@@ -20,12 +23,14 @@ public class Enemy {
     
     /**
      * Constructor to create an enemy to battle in fights.
+     * @param name The name of the enemy
      * @param goldReward Potential Gold reward for defeating this enemy.
      * @param expReward Potential EXP reward for defeating this enemy.
      * @param itemReward Potential Item reward for defeating this enemy.
      */
-    public Enemy(int goldReward, int expReward, Item itemReward)
+    public Enemy(String n, int goldReward, int expReward, Item itemReward)
     {
+        this.name = n;
         this.health = 20;
         this.maxHealth = 20;
         this.attack = 2;
@@ -85,4 +90,13 @@ public class Enemy {
     public Item getItem(){
         return itemReward;
     }
+    
+    /**
+     * Returns the name of the enemy
+     * @return String name of the enemy
+     */
+     public String getName()
+     {
+         return this.name;
+     }
 }
