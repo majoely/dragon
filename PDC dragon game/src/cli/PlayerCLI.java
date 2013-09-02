@@ -22,7 +22,7 @@ public class PlayerCLI {
         this.p = p;
         String[] com = {"help", "name", "pack", "dragon", "quests", "save", "exit"};
         this.commands = com;
-        File file = new File("src/main/playerTutorial");
+        File file = new File("src/file/tutorial/playerTutorial");
         Scanner out = new Scanner(file);
         while (out.hasNext())
         {

@@ -68,7 +68,7 @@ public class Main {
             
         } else
         {
-            File file = new File("src/main/intro");
+            File file = new File("src/file/intro/intro");
             Scanner out = new Scanner(file);
             while (out.hasNext())
             {
@@ -81,7 +81,7 @@ public class Main {
             }
             String pName = in.nextLine();
             System.out.println("Oh yes of course " + pName + "!");
-            file = new File("src/main/dragon");
+            file = new File("src/file/intro/dragon");
             out = new Scanner(file);
             while (out.hasNext())
             {
@@ -95,7 +95,7 @@ public class Main {
             String dName = in.nextLine();
             Dragon dra = new Dragon(dName);
             System.out.println(dName + " is a good name for a dragon");
-            file = new File("src/main/dragon2");
+            file = new File("src/file/intro/dragon2");
             out = new Scanner(file);
             while (out.hasNext())
             {
@@ -109,10 +109,53 @@ public class Main {
             Pack pac = new Pack(40);
             Item f = new Item("food", "used to feed dragon", 10);
             pac.addItem(f);
-            //Curt- Added Questledger to new players. Need to code for saves too I imagine
-            ArrayList<Quest> started = new ArrayList<>();
-            ArrayList<Quest> unavail = new ArrayList<>();
-            QuestLedger ql = new QuestLedger(unavail);
+            
+            //To create and import the quests from the files
+            QuestLedger ql = null;
+            ArrayList<Quest> quests = new ArrayList<>();
+            boolean finished = false;
+            for(int i = 1; i < 9 && !finished; i++)
+            {
+                File fq = new File("src/file/quests/quest" + i);
+                if (fq == null)
+                {
+                    ql = new QuestLedger(quests);
+                    finished = true;
+                    
+                } else
+                {
+                    Scanner inQuest = new Scanner(fq);
+                    String qName = in.nextLine();
+                    String qDescription = in.nextLine();
+                    ArrayList<Fight> qFights = new ArrayList<>();
+                    while (in.hasNext())
+                    {
+                        File fbg = new File("src/file/quests/badguy/" + in.nextLine());
+                        Scanner inBadGuy = new Scanner(fbg);
+                        String bgName = in.nextLine();
+                        int bgGold = in.nextInt();
+                        int bgExp = in.nextInt();
+                        if (in.hasNext())
+                        {
+                            File fItem = new File("src/file/item/" + in.nextLine());
+                            Scanner inItem = new Scanner(fItem);
+                            String iName = in.nextLine();
+                            String iDescript =  in.nextLine();
+                            int iValue = in.nextInt();
+                            Item bgItem = new Item(iName, iDescript, iValue);
+                            qFights.add(new Fight(bgName, bgGold, bgExp, bgItem));
+                        } else
+                        {
+                            qFights.add(new Fight(bgName, bgGold, bgExp));
+                        }
+                    }
+                    quests.add(new Quest(qName, qDescription, qFights));
+                }
+            }
+            
+            //End import of the quests
+            
+            
             Player pla = new Player(pName, pac, dra, ql);
             Thread t = new Thread(pla);
             t.start();

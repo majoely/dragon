@@ -17,6 +17,19 @@ public class PackCLI {
         this.inventory = inventory;
         String[] com = {"help", "sell", "buy", "use", "list", "player"};
         this.commands = com;
+        File file = new File("src/file/tutorial/packTutorial");
+        Scanner out = new Scanner(file);
+        while (out.hasNext())
+        {
+            
+            System.out.println(out.nextLine());
+            try {
+                Thread.sleep(400);
+                
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         this.commandInterface();
     }
     

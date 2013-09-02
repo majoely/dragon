@@ -24,6 +24,19 @@ public class DragonCLI {
         this.p = p;
         String[] com = {"help", "feed", "play", "train", "info", "player"};
         this.commands = com;
+        File file = new File("src/file/tutorial/dragonTutorial");
+        Scanner out = new Scanner(file);
+        while (out.hasNext())
+        {
+            
+            System.out.println(out.nextLine());
+            try {
+                Thread.sleep(400);
+                
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         this.commandInterface();
     }
 

@@ -40,6 +40,24 @@ public class Enemy {
         this.itemReward = itemReward;
     }
     
+    /**
+     * Constructor to create an enemy to battle in fights without Item.
+     * @param name The name of the enemy
+     * @param goldReward Potential Gold reward for defeating this enemy.
+     * @param expReward Potential EXP reward for defeating this enemy.
+     */
+    public Enemy(String n, int goldReward, int expReward)
+    {
+        this.name = n;
+        this.health = 20;
+        this.maxHealth = 20;
+        this.attack = 2;
+        this.defense = 2;
+        this.goldReward = goldReward;
+        this.expReward = expReward;
+        this.itemReward = null;
+    }
+    
     /*
      * retrieves the attack value of the creature
      * @returns attack
