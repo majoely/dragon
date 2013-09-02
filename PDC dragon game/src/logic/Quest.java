@@ -69,4 +69,9 @@ public class Quest {
     {
         return fights.iterator();
     }
+    
+    public void complete()
+    {
+        this.complete = true;
+    }
 }

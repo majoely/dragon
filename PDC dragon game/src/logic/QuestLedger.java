@@ -19,7 +19,7 @@ public class QuestLedger {
     public QuestLedger(ArrayList<Quest> uQ)
     {
         this.un = uQ;
-        this.quest = popNext();
+        popNext();
         this.com = new ArrayList<>();
     }
     
@@ -31,12 +31,12 @@ public class QuestLedger {
     public QuestLedger(ArrayList<Quest> uQ, int n)
     {
         this.un = uQ;
-        this.com = new ArrayLixt<>();
-        this.quest = popNext();
+        this.com = new ArrayList<>();
+        popNext();
         for(int i = 0; i < n; i++)
         {
             this.quest.complete();
-            this.quest = popNext();
+            popNext();
         }
     }
     
@@ -71,6 +71,6 @@ public class QuestLedger {
     @Override
     public String toString()
     {
-        return this.com.size();
+        return "" + this.com.size() + "\n";
     }
 }

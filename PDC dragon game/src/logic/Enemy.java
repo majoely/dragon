@@ -47,7 +47,7 @@ public class Enemy {
      * Calculates how much damage the creature is going to take
      */
     public void takeDmg(int incoming){
-        this.helath -= incoming;
+        this.health -= incoming;
     }
     
     /*
@@ -58,7 +58,7 @@ public class Enemy {
         return health;
     }
     
-    publid int getMaxHealth(){
+    public int getMaxHealth(){
         return this.maxHealth;
     }
     

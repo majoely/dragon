@@ -1,6 +1,9 @@
 
 package logic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @version v0.1 - Added skeleton code
  * @author Curtis
@@ -31,18 +34,22 @@ public class Fight {
         int strike = 0;
         while(player.getHealth() > 0 && badGuy.getHealth() > 0)
         {
-            if (strike % 2 = 0)
+            if (strike % 2 == 0)
             {
-                System.out.println("Your foe strikes dealing " + badguy.giveDmg() + " damage.");
-                player.takeDmg(badGuy.giveDmg);
+                System.out.println("Your foe strikes dealing " + badGuy.giveDmg() + " damage.");
+                player.takeDmg(badGuy.giveDmg());
                 printStats();
             } else
             {
-                System.out.println("Your dragon attackes dealing " + player.giveDmg + " damage.");
-                badGuy.takeDmg(player.giveDmg);
+                System.out.println("Your dragon attackes dealing " + player.giveDmg() + " damage.");
+                badGuy.takeDmg(player.giveDmg());
                 printStats();
             }
-            Thread.sleep(1000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             strike++;
         }
         if(player.getHealth() <= 0)
@@ -53,7 +60,7 @@ public class Fight {
             System.out.println("Your foe has been defeated, and you live to fight another day.");
             System.out.println("You have recieved " + badGuy.getExp() + " xp!");
             player.addExp(badGuy.getExp());
-            System.out.ptintln("You have received " + badGuy.getGold() + " gold!");
+            System.out.println("You have received " + badGuy.getGold() + " gold!");
             pack.addGold(badGuy.getGold());
             System.out.println("You have recieved " + badGuy.getItem().getName());
             pack.addItem(badGuy.getItem());

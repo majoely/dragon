@@ -112,7 +112,7 @@ public class Main {
             //Curt- Added Questledger to new players. Need to code for saves too I imagine
             ArrayList<Quest> started = new ArrayList<>();
             ArrayList<Quest> unavail = new ArrayList<>();
-            QuestLedger ql = new QuestLedger(started, unavail);
+            QuestLedger ql = new QuestLedger(unavail);
             Player pla = new Player(pName, pac, dra, ql);
             Thread t = new Thread(pla);
             t.start();
