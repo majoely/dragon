@@ -1,5 +1,7 @@
 package cli;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import logic.*;
 
@@ -13,7 +15,7 @@ public class PackCLI {
     private String[] commands;
     
     @SuppressWarnings("empty-statement")
-    public PackCLI(Pack inventory){
+    public PackCLI(Pack inventory) throws FileNotFoundException{
         this.inventory = inventory;
         String[] com = {"help", "sell", "buy", "use", "list", "player"};
         this.commands = com;

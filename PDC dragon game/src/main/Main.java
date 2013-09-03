@@ -135,6 +135,7 @@ public class Main {
                         String bgName = in.nextLine();
                         int bgGold = in.nextInt();
                         int bgExp = in.nextInt();
+                        Enemy en = null;
                         if (in.hasNext())
                         {
                             File fItem = new File("src/file/item/" + in.nextLine());
@@ -143,11 +144,12 @@ public class Main {
                             String iDescript =  in.nextLine();
                             int iValue = in.nextInt();
                             Item bgItem = new Item(iName, iDescript, iValue);
-                            qFights.add(new Fight(bgName, bgGold, bgExp, bgItem));
+                            en = new Enemy(bgName, bgGold, bgExp, bgItem);
                         } else
                         {
-                            qFights.add(new Fight(bgName, bgGold, bgExp));
+                            en = new Enemy(bgName, bgGold, bgExp);
                         }
+                        qFights.add(new Fight(dra, en, pac));
                     }
                     quests.add(new Quest(qName, qDescription, qFights));
                 }

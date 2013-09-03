@@ -4,6 +4,8 @@
  */
 package cli;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import logic.*;
 
@@ -18,7 +20,7 @@ public class DragonCLI {
     private Pack p;
     private String[] commands;
     
-    public DragonCLI(Dragon d, Pack p)
+    public DragonCLI(Dragon d, Pack p) throws FileNotFoundException
     {
         this.d = d;
         this.p = p;
