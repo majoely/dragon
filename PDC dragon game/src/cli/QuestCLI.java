@@ -46,7 +46,7 @@ public class QuestCLI {
     private void printCommands(){
         System.out.print("Commands: ");
         for(int i = 0; i < this.commands.length; i++){
-            System.out.print(this.commands[i] + " ");
+            System.out.print(this.commands[i] + "  ");
         }
         System.out.print("\n");
     }

@@ -12,7 +12,7 @@ public class QuestLedgerCLI{
     @SuppressWarnings("empty-statement")
     public QuestLedgerCLI(QuestLedger questLog){
         this.questLog = questLog;
-        String[] com = {"help", "start", "current", "completed"};
+        String[] com = {"help", "start", "current", "completed", "player"};
         this.commands = com;
         this.commandInterface();
     }
@@ -23,7 +23,7 @@ public class QuestLedgerCLI{
         String input = null;
         boolean exit = false;
         while(!exit){
-            System.out.print("Quest: ");
+            System.out.print("Quest Ledger: ");
             input = in.nextLine();
             switch(input){
                 case "help" : printCommands();
@@ -34,6 +34,8 @@ public class QuestLedgerCLI{
                 break;
                 case "completed" : listCompleted();
                 break;
+                case "player" : exit = true;
+                break; 
                 default : System.out.println("invalid command");
                 System.out.println("enter help to see commands");
                 break;
@@ -47,7 +49,7 @@ public class QuestLedgerCLI{
     private void printCommands(){
         System.out.print("Commands: ");
         for(int i = 0; i < this.commands.length; i++){
-            System.out.print(this.commands[i] + " ");
+            System.out.print(this.commands[i] + "  ");
         }
         System.out.print("\n");
     }

@@ -94,12 +94,22 @@ public class PlayerCLI {
     }
 
     private void goToPack() {
-        PackCLI pack = new PackCLI(p.getPack());
+        PackCLI pack;
+        try {
+            pack = new PackCLI(p.getPack());
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
         pack = null;
     }
 
     private void goToDragon() {
-        DragonCLI drag = new DragonCLI(p.getDragon(), p.getPack());
+        DragonCLI drag;
+        try {
+            drag = new DragonCLI(p.getDragon(), p.getPack());
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
         drag = null;
     }
  
@@ -141,7 +151,7 @@ public class PlayerCLI {
         String save = "" + System.currentTimeMillis() + "\n";
         save += this.p.toString();
         save += this.p.getDragon().toString();
-        //save += this.p.getQuestLedger().toString();
+        save += this.p.getQuestLedger().toString();
         save += this.p.getPack().toString();
         System.out.println(save);
         PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));

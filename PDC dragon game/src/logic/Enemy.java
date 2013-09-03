@@ -117,4 +117,13 @@ public class Enemy {
      {
          return this.name;
      }
+     
+     /**
+      * Checks if enemy has an item that could be looted after defeat.
+      * @return boolean 
+      */
+     public boolean hasItem()
+     {
+         return !(this.itemReward == null);
+     }
 }

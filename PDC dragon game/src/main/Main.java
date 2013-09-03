@@ -74,7 +74,7 @@ public class Main {
             {
                 System.out.println(out.nextLine());
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(0);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -87,7 +87,7 @@ public class Main {
             {
                 System.out.println(out.nextLine());
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(0);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -101,7 +101,7 @@ public class Main {
             {
                 System.out.println(out.nextLine());
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(0);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
@@ -116,53 +116,68 @@ public class Main {
             boolean finished = false;
             for(int i = 1; i < 9 && !finished; i++)
             {
+                //System.out.println("in the loop");
                 File fq = new File("src/file/quests/quest" + i);
-                if (fq == null)
+                if (!fq.exists())
                 {
                     ql = new QuestLedger(quests);
                     finished = true;
+                    //System.out.println("now should finish");
                     
                 } else
                 {
+                    //System.out.println("getting the quests");
                     Scanner inQuest = new Scanner(fq);
-                    String qName = in.nextLine();
-                    String qDescription = in.nextLine();
+                    String qName = inQuest.nextLine();
+                    String qDescription = inQuest.nextLine();
                     ArrayList<Fight> qFights = new ArrayList<>();
-                    while (in.hasNext())
+                    while (inQuest.hasNext())
                     {
-                        File fbg = new File("src/file/quests/badguy/" + in.nextLine());
+                        //System.out.println("then the badquys");
+                        File fbg = new File("src/file/quests/badguy/" + inQuest.nextLine());
                         Scanner inBadGuy = new Scanner(fbg);
-                        String bgName = in.nextLine();
-                        int bgGold = in.nextInt();
-                        int bgExp = in.nextInt();
+                        //System.out.println("1");
+                        String bgName = inBadGuy.nextLine();
+                        //System.out.println("2");
+                        int bgGold = inBadGuy.nextInt();
+                        //System.out.println("3");
+                        int bgExp = inBadGuy.nextInt();
+                        //System.out.println("4");
                         Enemy en = null;
-                        if (in.hasNext())
+                        if (inBadGuy.hasNext())
                         {
-                            File fItem = new File("src/file/item/" + in.nextLine());
+                            inBadGuy.nextLine();
+                            File fItem = new File("src/file/item/" + inBadGuy.nextLine());
                             Scanner inItem = new Scanner(fItem);
-                            String iName = in.nextLine();
-                            String iDescript =  in.nextLine();
-                            int iValue = in.nextInt();
+                            String iName = inItem.nextLine();
+                            String iDescript =  inItem.nextLine();
+                            int iValue = inItem.nextInt();
                             Item bgItem = new Item(iName, iDescript, iValue);
                             en = new Enemy(bgName, bgGold, bgExp, bgItem);
+                            //System.out.println("item");
                         } else
                         {
                             en = new Enemy(bgName, bgGold, bgExp);
+                            //System.out.println("no item");
                         }
                         qFights.add(new Fight(dra, en, pac));
+                        //System.out.println("new fight");
                     }
                     quests.add(new Quest(qName, qDescription, qFights));
+                    //System.out.println("new quest");
                 }
             }
             
             //End import of the quests
             
+            //System.out.println("did i get here?");
             
             Player pla = new Player(pName, pac, dra, ql);
             Thread t = new Thread(pla);
             t.start();
             PlayerCLI pcli = new PlayerCLI(pla);
-        
+            System.out.println("done?");
+            pcli = null;
         }
     }
     

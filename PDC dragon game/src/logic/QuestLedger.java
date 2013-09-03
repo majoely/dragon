@@ -19,8 +19,9 @@ public class QuestLedger {
     public QuestLedger(ArrayList<Quest> uQ)
     {
         this.un = uQ;
-        popNext();
         this.com = new ArrayList<>();
+        popNext();
+        
     }
     
     /**
@@ -54,8 +55,13 @@ public class QuestLedger {
      */
     public void popNext()
     {
-        this.com.add(this.quest);
-        this.quest = this.un.remove(0);
+        if(this.quest != null)
+            this.com.add(this.quest);
+        if (this.un.isEmpty())
+            this.quest = null;
+        else
+            this.quest = this.un.remove(0);
+        
     }
     
     public String[] listCompleted()

@@ -59,11 +59,27 @@ public class Fight {
         {
             System.out.println("Your foe has been defeated, and you live to fight another day.");
             System.out.println("You have recieved " + badGuy.getExp() + " xp!");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             player.addExp(badGuy.getExp());
             System.out.println("You have received " + badGuy.getGold() + " gold!");
             pack.addGold(badGuy.getGold());
-            System.out.println("You have recieved " + badGuy.getItem().getName());
-            pack.addItem(badGuy.getItem());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            if (badGuy.hasItem())
+            {
+                System.out.println("You have recieved " + badGuy.getItem().getName());
+                pack.addItem(badGuy.getItem());
+            } else
+            {
+                System.out.println("You have recieved no item from this foe");
+            }
         }
     }
     

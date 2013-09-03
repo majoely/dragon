@@ -19,9 +19,10 @@ public class Shop{
      
      
      public Shop(int level){
+         shopInventory = new ArrayList<>();
          for(int i = 0; i <= level; i++) {
              try {
-                 File f = new File("src/main/item" + i);
+                 File f = new File("src/file/item/item" + i);
                  Scanner in = new Scanner(f);
                  String name = in.nextLine();
                  String descript = in.nextLine();

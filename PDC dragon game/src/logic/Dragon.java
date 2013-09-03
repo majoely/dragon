@@ -28,7 +28,7 @@ public class Dragon {
         this.name = name;
         this.health = 100;
         this.maxHealth = 100;
-        this.defense = 5;
+        this.defense = 1;
         this.attack = 5;
         this.experience = 0;
         this.level = 0;
@@ -77,7 +77,7 @@ public class Dragon {
      */
     public void takeDmg(int incoming){
         int dmg = incoming - this.defense;
-        this.health =- dmg;
+        this.health -= dmg;
     }
     
     public int getMaxHealth()
