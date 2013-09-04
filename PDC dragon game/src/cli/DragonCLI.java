@@ -100,7 +100,7 @@ public class DragonCLI {
 
     private void play() {
        String output = "";
-        if (d.getLevel() > 2)
+        if (d.getLevel() > 0)
         {
             int xp = 5;
             Item i = p.selectItem("toy");
@@ -113,14 +113,14 @@ public class DragonCLI {
         } else
         {
             output += d.getName() + "is not a high enough level for you to play\n";
-            output += "Try again when you are level 3 or above\n";
+            output += "Try again when you are level 1 or above\n";
         }
         System.out.print(output);
     }
 
     private void train() {
         String output = "";
-        if (d.getLevel() > 4)
+        if (d.getLevel() > 2)
         {
             int xp = 8;
             Item i = p.selectItem("toy");
@@ -133,7 +133,7 @@ public class DragonCLI {
         } else
         {
             output += d.getName() + "is not a high enough level for you to train\n";
-            output += "Try again when you are level 5 or above\n";
+            output += "Try again when you are level 3 or above\n";
         }
         System.out.print(output);
     }

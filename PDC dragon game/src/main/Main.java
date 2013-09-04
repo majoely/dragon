@@ -107,9 +107,10 @@ public class Main {
                 }
             }
             Pack pac = new Pack(40);
-            Item f = new Item("food", "used to feed dragon", 10);
-            pac.addItem(f);
-            
+            for (int i = 0; i < 3; i++) {
+                Item f = new Item("food", "used to feed dragon", 10);
+                pac.addItem(f);
+            }
             //To create and import the quests from the files
             QuestLedger ql = null;
             ArrayList<Quest> quests = new ArrayList<>();
