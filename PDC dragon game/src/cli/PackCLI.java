@@ -26,7 +26,7 @@ public class PackCLI {
             
             System.out.println(out.nextLine());
             try {
-                Thread.sleep(400);
+                Thread.sleep(0);
                 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
@@ -69,7 +69,7 @@ public class PackCLI {
     private void printCommands(){
         System.out.print("Commands: ");
         for(int i = 0; i < this.commands.length; i++){
-            System.out.print(this.commands[i] + " ");
+            System.out.print(this.commands[i] + "  ");
         }
         System.out.print("\n");
     }
@@ -80,18 +80,19 @@ public class PackCLI {
     private void sell(){
         System.out.println("Please select an item to sell or type cancel to stop");
         printInventory();
+        System.out.print("Sell: ");
         Scanner pick = new Scanner(System.in);
         String command = pick.nextLine();
         while(!command.equals("cancel")){
-            System.out.print("Sell: ");
             Item temp = inventory.selectItem(command);
             if(temp != null){
                 inventory.sellItem(temp);
-                System.out.println("You now have" + inventory.getGold() + " gold");
+                System.out.println("You now have " + inventory.getGold() + " gold");
             }
             else{
                 System.out.println("You don't own that - type cancel to continue");
             }
+            System.out.print("Sell: ");
             command = pick.nextLine();
         }
     }
@@ -140,10 +141,10 @@ public class PackCLI {
         System.out.println("Please select an item to buy- type cancel to stop");
         Shop shop = new Shop(1); // add method for getting dragon level
         printShop(shop);
+        System.out.print("Buy: ");
         Scanner pick = new Scanner(System.in);
         String command = pick.nextLine();
         while(!command.equals("cancel")){
-            System.out.print("Buy: ");
             Item temp = shop.findItem(command);
             if(temp != null && (inventory.getGold() > (temp.getValue() * 1.2))){
                 inventory.buyItem(temp);
@@ -155,6 +156,7 @@ public class PackCLI {
             else{
                 System.out.println("You don't have enough gold - type cancel to continue");
             }
+            System.out.print("Buy: ");
             command = pick.nextLine();
         }
         shop = null;
@@ -167,6 +169,7 @@ public class PackCLI {
         System.out.println("Please select an item to use");
         printInventory();
         Scanner pick = new Scanner(System.in);
+        System.out.print("Use:  ");
         String command = pick.nextLine();
         while(!command.equals("cancel")){
             Item temp = inventory.selectItem(command);
@@ -176,6 +179,7 @@ public class PackCLI {
             else{
                 System.out.println("You can't use that - type cancel to continue");
             }
+            System.out.print("Use:  ");
             command = pick.nextLine();
         }
     }
@@ -185,9 +189,10 @@ public class PackCLI {
      */
     private void printInventory(){
         String[] invent = inventory.getInventoryNames();
+        System.out.print("Items:  ");
         for (int i = 0; i < invent.length; i++)
         {
-            System.out.print(invent[i] + " ");
+            System.out.print(invent[i] + "  ");
         }
         System.out.print("\n");
         System.out.println("Gold: " + inventory.getGold());
@@ -199,9 +204,10 @@ public class PackCLI {
             System.out.println("shop is closed");
         }
         else{
+            System.out.print("Items:  ");
             for (int i = 0; i < invent.length; i++)
                 {
-                    System.out.print(invent[i] + " ");
+                    System.out.print(invent[i] + "  ");
                 }
             System.out.print("\n");
             System.out.println("Gold: " + inventory.getGold());

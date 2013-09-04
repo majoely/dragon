@@ -33,7 +33,7 @@ public class DragonCLI {
             
             System.out.println(out.nextLine());
             try {
-                Thread.sleep(400);
+                Thread.sleep(0);
                 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();

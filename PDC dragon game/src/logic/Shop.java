@@ -40,19 +40,18 @@ public class Shop{
      }
      
     public Item findItem(String name){
-        Item item = null;
         //System.out.println("select");
-        boolean found = false;
         Iterator it = this.shopInventory.iterator();
-        while(it.hasNext() && !found){
-            item = (Item) it.next();
+        while(it.hasNext()){
+            Item item = (Item) it.next();
             //System.out.println("Iterate");
             if(name.equals(item.getName())){
-                found = true;
+                return item;
                 //System.out.println("found");
             }
         }
-        return item;
+        return null;
+        
     }
     
     public String[] getInventoryNames(){
