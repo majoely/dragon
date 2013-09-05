@@ -33,7 +33,7 @@ public class Dragon {
         this.experience = 0;
         this.level = 0;
         this.hunger = 0;
-        int[] levs = {10, 14, 18, 24, 30, 36, 44, 52, 60, 70};
+        int[] levs = {10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120};
         this.levels = levs;
     }
     
@@ -46,7 +46,7 @@ public class Dragon {
         this.experience = exp;
         this.level = lev;
         this.hunger = hung;
-        int[] levs = {10, 14, 18, 24, 30, 36, 44, 52, 60, 70};
+        int[] levs = {10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120};
         this.levels = levs;
     }
     
@@ -62,13 +62,17 @@ public class Dragon {
      * Adds to the dragons health pool
      * @param health, amount added to dragon
      */
-    public void addHealth(int health){
-        if((this.health =+ health) < this.maxHealth){
-            this.health =+ health;
+    public String addHealth(int health){
+        String output = "";
+        if((this.health + health) < this.maxHealth){
+            this.health += health;
+            output += "Your health is now " + this.health + "/" + this.maxHealth + "\n";
         }
         else{
             this.health = this.maxHealth;
+            output += "You are full healed\n";
         }
+        return output;
     }
     
     /*
@@ -127,7 +131,7 @@ public class Dragon {
         String output = "";
         if (this.experience + expGain >= this.levels[this.level])
         {
-            this.experience = this.experience + expGain - this.levels[this.level];
+            this.experience = (this.experience + expGain) - this.levels[this.level];
             addLevel();
             output += "Congratulations you are now at level " + this.level + "!!\n";
         } else

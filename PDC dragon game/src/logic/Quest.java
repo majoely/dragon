@@ -38,13 +38,24 @@ public class Quest {
      */ 
     public void mission()
     {
+        Fight f = fights.remove(0);
+        f.conductFight();
+        if (fights.isEmpty())
+        {
+            System.out.println("You have completed this quests");
+            complete = true;
+        } else
+        {
+            System.out.println("You have " + fights.size() + " fights left in the quest");
+        }
+        /*
         Iterator<Fight> f = fights.iterator();
         while(f.hasNext())
         {
             Fight fight = f.next();
             fight.conductFight();
         }
-        complete = true;
+        complete = true;*/
     }
     
     /**

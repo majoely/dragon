@@ -90,6 +90,7 @@ public class DragonCLI {
             output += "You try to feed " + d.getName() + "\n";
             p.useItem(i);
             output += d.addExp(3);
+            output += d.addHealth(5);
         } else
         {
             output += "You do not have any food to feed " + d.getName() + "\n";
@@ -141,7 +142,9 @@ public class DragonCLI {
     private void getInfo() {
         String output = "";
         output += "Name: " + d.getName() + "\n";
+        output += "Health: " + d.getHealth() + "/" + d.getMaxHealth() + "\n";
         output += "Level: " + d.getLevel() + "\n";
+        output += "Exp: " + d.getExp() + "\n";
         System.out.print(output);
     }
     

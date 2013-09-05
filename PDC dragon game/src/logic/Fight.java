@@ -58,13 +58,12 @@ public class Fight {
         } else
         {
             System.out.println("Your foe has been defeated, and you live to fight another day.");
-            System.out.println("You have recieved " + badGuy.getExp() + " xp!");
+            System.out.print(player.addExp(badGuy.getExp()));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            player.addExp(badGuy.getExp());
             System.out.println("You have received " + badGuy.getGold() + " gold!");
             pack.addGold(badGuy.getGold());
             try {

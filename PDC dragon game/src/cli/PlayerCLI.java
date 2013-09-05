@@ -20,7 +20,7 @@ public class PlayerCLI {
     public PlayerCLI(Player p) throws FileNotFoundException
     {
         this.p = p;
-        String[] com = {"help", "name", "pack", "dragon", "quests", "save", "exit"};
+        String[] com = {"help", "name", "pack", "dragon", "quest", "save", "exit"};
         this.commands = com;
         File file = new File("src/file/tutorial/playerTutorial");
         Scanner out = new Scanner(file);
@@ -58,7 +58,7 @@ public class PlayerCLI {
                         break;
                 case "dragon" : goToDragon();
                         break;
-                case "quests" : goToQuestLedger();
+                case "quest" : goToQuestLedger();
                         break;
                 case "exit" : exit = goToExit();
                         break;
@@ -114,8 +114,15 @@ public class PlayerCLI {
     }
  
     private void goToQuestLedger() {
-        QuestLedgerCLI ql = new QuestLedgerCLI(p.getQuestLedger());
-        ql = null;
+        if(p.getDragon().getLevel() > 4)
+        {
+            QuestLedgerCLI ql = new QuestLedgerCLI(p.getQuestLedger());
+            ql = null;
+        } else
+        {
+            System.out.println(p.getDragon().getName() + " is not old enough to go questing yet");
+            System.out.println("Try again when you are level 5 or above");
+        }
     }
 
     private boolean goToExit() {
