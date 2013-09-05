@@ -177,8 +177,7 @@ public class Main {
             Thread t = new Thread(pla);
             t.start();
             PlayerCLI pcli = new PlayerCLI(pla);
-            System.out.println("done?");
-            pcli = null;
+            t.stop();
         }
     }
     

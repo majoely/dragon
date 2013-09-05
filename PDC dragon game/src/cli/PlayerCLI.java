@@ -138,7 +138,6 @@ public class PlayerCLI {
         }
         if(input.equals("yes"))
         {
-            p.stop();
             exit = true;
         }
         return exit;
