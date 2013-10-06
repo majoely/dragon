@@ -65,6 +65,8 @@ public class DragonCLI {
                                 break;
                 case "player" : exit = true;
                                 break;
+                case "addExp" : d.addExp(80);
+                                break;
                 default : System.out.println("Invalid command");
                         System.out.println("enter help to see commands");
                         break;

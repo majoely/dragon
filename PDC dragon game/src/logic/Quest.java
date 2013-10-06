@@ -39,7 +39,7 @@ public class Quest {
     public void mission()
     {
         Fight f = fights.remove(0);
-        f.conductFight();
+        f.conductFightV2();
         if (fights.isEmpty())
         {
             System.out.println("You have completed this quests");

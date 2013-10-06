@@ -3,6 +3,7 @@ package logic;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Scanner;
 
 /**
  * @version v0.1 - Added skeleton code
@@ -94,27 +95,27 @@ public class Fight {
     
     //Just putting the code for my fight method till I have it working. Will then put it to replace the other one.
     public void conductFightV2(){
-        pEnergy += 3;
-        bgEnergy += 2;
         while(player.getHealth() > 0 && badGuy.getHealth() > 0){
-            System.out.println(player.getName() + "has " + dEnergy);
-            System.out.println("What should " + d.getName() + "do!? Attack - Firebreath - Defend - Potion");
+            System.out.println(player.getName() + " has " + pEnergy + " Energy");
+            System.out.println("What should " + player.getName() + " do? Attack - Firebreath - Defend - Potion");
             Scanner in = new Scanner(System.in);
             String input = null;
             System.out.print("Fight: ");
             input = in.nextLine();
             switch(input){
-                case "Attack" : basicAttack();
+                case "attack" : basicAttack();
                     break;
-                case "Firebreath" : advancedAttack();
+                case "firebreath" : advancedAttack();
                     break;
-                case "Defend" : defend();
+                case "defend" : defend();
                     break;
-                case "Potion" : //code for using a potion
+                case "potion" : //code for using a potion
                     break;
                 default : System.out.println("You can't do that here!");
                     break;
             }
+            System.out.println(player.getName() + " has " + player.getHealth() + " health remaining");
+            System.out.println(badGuy.getName() + " has " + badGuy.getHealth() + " health remaining");
         }
         if(player.getHealth() <= 0)
         {
@@ -151,12 +152,12 @@ public class Fight {
     }
     
     private void basicAttack(){
-        if(pEnergy > 2){
-        Sytem.out.println("Your Dragon dealt " + player.giveDmg());
+        if(pEnergy >= 2){
+        System.out.println("Your Dragon dealt " + player.giveDmg() + " damage");
         badGuy.takeDmg(player.giveDmg());
-        pEnergy -= 2;
+        pEnergy += 1;
         enemyAttack();
-        bgEnergy += 1;
+        bgEnergy += 3;
         }
         else{
             System.out.println("You need 2 energy for this attack, you have " + pEnergy);
@@ -164,15 +165,15 @@ public class Fight {
     }
     
     private void advancedAttack(){
-        if(pEnergy > 10){
-            pEnergy -= 10;
+        if(pEnergy >= 10){
+            pEnergy -= 7;
             int damage = player.giveDmg() + 10;
-            System.out.println("Your dragon dealt " + damage);
+            System.out.println("Your dragon dealt " + damage + " damage");
             badGuy.takeDmg(player.giveDmg());
-            bgEnergy += 3;
+            bgEnergy += 5;
         }
         else{
-            System.out.prointln("You need 10 energy for this attack, you have " + pEnergy);
+            System.out.println("You need 10 energy for this attack, you have " + pEnergy);
         }
     }
     
@@ -180,7 +181,8 @@ public class Fight {
         System.out.println(player.getName() + " takes a defensive stance");
         //code for adding extra defense
         enemyAttack();
-        bgEnergy += 1;
+        pEnergy += 5;
+        bgEnergy += 3;
     }
     
     private void enemyAttack(){
@@ -190,9 +192,8 @@ public class Fight {
         }
         else{
             bgEnergy -= 20;
-            System.out.println(bagGuy.getName() + " lunged at your dragon for more damage! He did " + badGuy.giveDmg + 5);
+            System.out.println(badGuy.getName() + " lunged at your dragon for more damage! He did " + badGuy.giveDmg() + 5);
             player.takeDmg(badGuy.giveDmg() + 5);
-        }
         }
     }
 }
