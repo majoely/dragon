@@ -177,7 +177,7 @@ public class Fight {
     
     private void defend(){
         System.out.println(player.getName() + " takes a defensive stance");
-        int damage = badGuy.giveDmg() + (player.getDef() *. 3);
+        int damage = badGuy.giveDmg() + (player.getDef() * 2);
         player.takeDmg(damage);
         pEnergy += 5;
         bgEnergy += 3;
