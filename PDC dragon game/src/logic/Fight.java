@@ -97,7 +97,7 @@ public class Fight {
     public void conductFightV2(){
         while(player.getHealth() > 0 && badGuy.getHealth() > 0){
             System.out.println(player.getName() + " has " + pEnergy + " Energy");
-            System.out.println("What should " + player.getName() + " do? Attack - Firebreath - Defend - Potion");
+            System.out.println("What should " + player.getName() + " do? attack - firebreath - defend");
             Scanner in = new Scanner(System.in);
             String input = null;
             System.out.print("Fight: ");
@@ -108,8 +108,6 @@ public class Fight {
                 case "firebreath" : advancedAttack();
                     break;
                 case "defend" : defend();
-                    break;
-                case "potion" : //code for using a potion
                     break;
                 default : System.out.println("You can't do that here!");
                     break;
@@ -169,7 +167,7 @@ public class Fight {
             pEnergy -= 7;
             int damage = player.giveDmg() + 10;
             System.out.println("Your dragon dealt " + damage + " damage");
-            badGuy.takeDmg(player.giveDmg());
+            badGuy.takeDmg(damage);
             bgEnergy += 5;
         }
         else{
@@ -179,8 +177,8 @@ public class Fight {
     
     private void defend(){
         System.out.println(player.getName() + " takes a defensive stance");
-        //code for adding extra defense
-        enemyAttack();
+        int damage = badGuy.giveDmg() + (player.getDef() * 2);
+        player.takeDmg(damage);
         pEnergy += 5;
         bgEnergy += 3;
     }
