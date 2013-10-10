@@ -70,7 +70,7 @@ public class Main {
                 //pull out the saved data
                 ResultSet save = stmt.executeQuery("select * from PDC.SAVE where id = 1");
                 save.next();
-                String dName = save.getString("pName");
+                String dName = save.getString("dname");
                 int dHealth = save.getInt("health");
                 int dMax = save.getInt("mhealth");
                 int dDefense = save.getInt("defense");
