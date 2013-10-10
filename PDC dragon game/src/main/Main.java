@@ -8,6 +8,10 @@ import logic.*;
 import cli.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -68,6 +72,7 @@ public class Main {
             
         } else
         {
+            /*
             File file = new File("src/file/intro/intro");
             Scanner out = new Scanner(file);
             while (out.hasNext())
@@ -168,16 +173,36 @@ public class Main {
                     //System.out.println("new quest");
                 }
             }
+            * */
+            
+            //Variables for inside the try/catch loop.
+            
+            
+            //Trying to import data from javadb
+            try {
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+                Statement stmt = con.createStatement();
+                
+                ResultSet intro = stmt.executeQuery("select INTRO from PDC.INTRO;");
+                System.out.print(intro.getString(0));
+                System.out.println("\nsomething\n");
+                System.out.print(intro.getString(1));
+                System.out.println("\nsomething\n");
+                System.out.print(intro.getString(2));
+                
+                /*
+                Player pla = new Player(pName, pac, dra, ql);
+                Thread t = new Thread(pla);
+                t.start();
+                PlayerCLI pcli = new PlayerCLI(pla);
+                t.stop();*/
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             
             //End import of the quests
-            
-            //System.out.println("did i get here?");
-            
-            Player pla = new Player(pName, pac, dra, ql);
-            Thread t = new Thread(pla);
-            t.start();
-            PlayerCLI pcli = new PlayerCLI(pla);
-            t.stop();
+           
         }
     }
     
