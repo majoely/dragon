@@ -16,7 +16,7 @@ public class Dragon {
     private int attack;
     private int defense; 
     // High hunger is bad. 0.0 is a happy fed pet
-    private double hunger;   
+    private int hunger;   
     private int[] levels;
     
     /*
@@ -37,7 +37,7 @@ public class Dragon {
         this.levels = levs;
     }
     
-    public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, double hung){
+    public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, int hung){
         this.name = name;
         this.health = health;
         this.maxHealth = maxH;
@@ -170,7 +170,7 @@ public class Dragon {
      * Feeds the dragon. Lower the total hunger level to make the dragon happier
      * @param food
      */
-    public void reduceHunger(double food){
+    public void reduceHunger(int food){
         this.hunger =- food;
     }
     

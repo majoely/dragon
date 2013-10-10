@@ -6,7 +6,6 @@ package main;
 
 import logic.*;
 import cli.*;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +14,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +32,7 @@ public class Main {
         }
         if (ans.equals("yes"))
         {
+            /*
             File file = new File("src/main/save");
             Scanner out = new Scanner(file);
             long time = out.nextLong();
@@ -47,7 +45,7 @@ public class Main {
             int dHealth = out.nextInt();
             int dAttack = out.nextInt();
             int dDefense = out.nextInt();
-            double dHunger = out.nextDouble();
+            int dHunger = out.nextInt();
             int pacGold = out.nextInt();
             out.nextLine();
             ArrayList<Item> item = new ArrayList<>();
@@ -56,21 +54,51 @@ public class Main {
                 String temp = out.nextLine();
                 switch (temp)
                 {
-                    case "food" : item.add(new Item("food", "used to feed dragon", 10));
+                    case "Food" : item.add(new Item("Food", "Top grade dragon food", 10));
                        break;
-                    case "toy" : item.add(new Item("toy", "used to play with dragon", 35));
+                    case "Chestplate" : item.add(new Item("Chestplate", "Better than nothing ... slightly", 20));
                        break;
-                    case "equip" : item.add(new Item("equip", "used to train dragon", 80));
+                    case "Toy" : item.add(new Item("Toy", "To play with your dragon", 25));
                        break;
                 }
+            }*/
+            //connect to database
+            try {
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+                Statement stmt = con.createStatement();
+
+                //pull out the saved data
+                ResultSet save = stmt.executeQuery("select * from PDC.SAVE where id = 1");
+                save.next();
+                String dName = save.getString("pName");
+                int dHealth = save.getInt("health");
+                int dMax = save.getInt("mhealth");
+                int dDefense = save.getInt("defense");
+                int dAttack = save.getInt("attack");
+                int dExperience = save.getInt("exp");
+                int dLevel = save.getInt("level");
+                int dHunger = save.getInt("hunger");
+                int pacGold = save.getInt("gold");
+                String pName = save.getString("pname");
+                String tempItem = save.getString("items");
+                StringTokenizer st = new StringTokenizer(tempItem, ",");
+                ArrayList<Item> item = new ArrayList<>();
+                while (st.hasMoreElements()) {
+                    ResultSet sqlItem = stmt.executeQuery("select * from PDC.ITEM where id = " + st.nextToken());
+                    sqlItem.next();
+                    item.add(new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold")));
+                }
+                
+                Dragon dra = new Dragon(dName, dHealth, dMax, dDefense, dAttack, dExperience, dLevel, dHunger);
+                Pack pack = new Pack(pacGold, item);
+                Player pla = new Player(pName, pack, dra);
+                Thread t = new Thread(pla);
+                t.start();
+                PlayerCLI pcli = new PlayerCLI(pla);
+                t.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            Dragon dra = new Dragon(dName, dHealth, dMax, dDefense, dAttack, dExperience, dLevel, dHunger);
-            Pack pack = new Pack(pacGold, item);
-            Player pla = new Player(pName, pack, dra);
-            Thread t = new Thread(pla);
-            t.start();
-            PlayerCLI pcli = new PlayerCLI(pla);
-            t.stop();
             
         } else
         {
@@ -247,6 +275,7 @@ public class Main {
                     //create and add a quest
                     quests.add(new Quest(qName, qDesc, qFight));
                 }
+                ql = new QuestLedger(quests);
                 //create player and start
                 Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);

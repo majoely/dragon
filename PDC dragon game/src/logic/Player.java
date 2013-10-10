@@ -1,5 +1,8 @@
 package logic;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,6 +84,18 @@ public class Player implements Runnable {
     public void stop()
     {
         this.stop = true;
+    }
+    
+    public void save() throws FileNotFoundException {
+        String save = "" + System.currentTimeMillis() + "\n";
+        save += toString();
+        save += getDragon().toString();
+        save += getQuestLedger().toString();
+        save += getPack().toString();
+        System.out.print(save);
+        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
+        pw.println(save);
+        pw.close();
     }
     
     @Override

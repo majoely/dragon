@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,11 +72,8 @@ public class PlayerCLI {
                                         ex.printStackTrace();
                                     }
                         break;
-                case "save" : try {
-                                    save();
-                                } catch (FileNotFoundException ex) {
-                                    ex.printStackTrace();
-                                }
+                case "save" : save();
+                                
                     break;
                 default : System.out.println("Invalid command");
                           System.out.println("enter help to see commands");
@@ -152,16 +151,11 @@ public class PlayerCLI {
         }
     }
     
-    private void save() throws FileNotFoundException
-    {
-        String save = "" + System.currentTimeMillis() + "\n";
-        save += this.p.toString();
-        save += this.p.getDragon().toString();
-        save += this.p.getQuestLedger().toString();
-        save += this.p.getPack().toString();
-        System.out.println(save);
-        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
-        pw.println(save);
-        pw.close();
+    private void save() {
+        try {
+            this.p.save();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 }
