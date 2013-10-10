@@ -182,13 +182,23 @@ public class Main {
             try {
                 Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
                 Statement stmt = con.createStatement();
-                
-                ResultSet intro = stmt.executeQuery("select INTRO from PDC.INTRO;");
-                System.out.print(intro.getString(0));
-                System.out.println("\nsomething\n");
-                System.out.print(intro.getString(1));
-                System.out.println("\nsomething\n");
-                System.out.print(intro.getString(2));
+                //game introduction
+                ResultSet intro = stmt.executeQuery("select INTRO from PDC.INTRO");
+                intro.next();
+                System.out.print((intro.getString("intro")).replaceAll("\\\\n", "\n"));
+                intro.next();
+                //get name
+                String pName = in.nextLine();
+                System.out.println("Oh yes of course " + pName + "!");
+                //dragon introduction
+                System.out.print(intro.getString("intro").replaceAll("\\\\n", "\n"));
+                intro.next();
+                String dName = in.nextLine();
+                Dragon dra = new Dragon(dName);
+                //final introduction
+                System.out.print(intro.getString("intro").replaceAll("\\\\n", "\n"));
+                intro = null;
+                //create pack
                 
                 /*
                 Player pla = new Player(pName, pac, dra, ql);
