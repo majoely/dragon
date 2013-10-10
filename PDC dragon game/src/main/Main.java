@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,6 +70,7 @@ public class Main {
             Thread t = new Thread(pla);
             t.start();
             PlayerCLI pcli = new PlayerCLI(pla);
+            t.stop();
             
         } else
         {
@@ -199,13 +201,58 @@ public class Main {
                 System.out.print(intro.getString("intro").replaceAll("\\\\n", "\n"));
                 intro = null;
                 //create pack
-                
-                /*
+                Pack pac = new Pack(40);
+                ResultSet item = stmt.executeQuery("select * from PDC.ITEM where ID = 0");
+                item.next();
+                for (int i = 0; i < 3; i++) {
+                    //create food and put in pack
+                    Item f = new Item(item.getString("name"), item.getString("descript"), item.getInt("gold"));
+                    pac.addItem(f);
+                }
+                item = null;
+                //create the ql, the quests and the fights with the bad guys. 
+                QuestLedger ql = null;
+                ArrayList<Quest> quests = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    ResultSet quest = stmt.executeQuery("select * from PDC.QUEST where id = " + i);
+                    quest.next();
+                    System.out.println("quest loop");
+                    String qName = quest.getString("name");
+                    String qDesc = quest.getString("descript");
+                    String badGuys = quest.getString("badguy");
+                    ArrayList<Fight> qFight = new ArrayList<>();
+                    StringTokenizer st = new StringTokenizer(badGuys, ",");
+                    //get the badguys
+                    while (st.hasMoreElements()) {
+                        System.out.println("toker loop");
+                        Enemy en = null;
+                        ResultSet bg = stmt.executeQuery("select * from PDC.BADGUY where ID = " + st.nextToken());
+                        bg.next();
+                        String bgName = bg.getString("name");
+                        int bgGold = bg.getInt("gold");
+                        int bgExp = bg.getInt("exp");
+                        String tempItem = bg.getString("item");
+                        //if they have an item
+                        if (tempItem != null) {
+                            ResultSet sqlItem = stmt.executeQuery("select * from PDC.ITEM where ID = " + tempItem);
+                            sqlItem.next();
+                            Item bgItem = new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold")); 
+                            en = new Enemy(bgName, bgGold, bgExp, bgItem);
+                        } else {
+                            en = new Enemy(bgName, bgGold, bgExp);
+                        }
+                        //create and add a fight
+                        qFight.add(new Fight(dra, en, pac));
+                    }
+                    //create and add a quest
+                    quests.add(new Quest(qName, qDesc, qFight));
+                }
+                //create player and start
                 Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);
                 t.start();
                 PlayerCLI pcli = new PlayerCLI(pla);
-                t.stop();*/
+                t.stop();
                 
             } catch (Exception e) {
                 e.printStackTrace();
