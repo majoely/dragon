@@ -23,7 +23,7 @@ public class PackUI extends JPanel implements ActionListener{
 	public PackUI() {
 		setLayout(new BorderLayout());
 		view = new JPanel();
-                view.setLayout(new GridLayout(0,1));
+                view.setLayout(new GridLayout(1,0));
 		add(view, BorderLayout.CENTER);
 		
 		buttons = new JPanel();
@@ -43,13 +43,13 @@ public class PackUI extends JPanel implements ActionListener{
                 
                 display = new JPanel();
                 display.setBackground(Color.red);
-                display.add(new JLabel("This will display the desciption of the items selected below"));
+                //display.add(new JLabel("This will display the desciption of the items selected below"));
 		view.add(display);
                 
                 items = new JPanel();
                 items.setBackground(Color.ORANGE);
                 //items.setLayout(new GridLayout(2,0));
-                items.add(new JLabel("Here the items will be displayed as boxs that can be selected"));
+                //items.add(new JLabel("Here the items will be displayed as boxs that can be selected"));
                 view.add(items);
                 
 	}

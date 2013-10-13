@@ -86,7 +86,7 @@ public class PlayerCLI {
                                         ex.printStackTrace();
                                     }
                         break;
-                case "save" : save();
+                case "save" : this.p.save();
                                 
                     break;
                 default : System.out.println("Invalid command");
@@ -162,14 +162,6 @@ public class PlayerCLI {
         while (out.hasNext())
         {
             System.out.println(out.nextLine());
-        }
-    }
-    
-    private void save() {
-        try {
-            this.p.save();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         }
     }
 }

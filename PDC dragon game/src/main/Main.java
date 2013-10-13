@@ -6,6 +6,7 @@ package main;
 
 import logic.*;
 import cli.*;
+import gui.*;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -133,7 +134,8 @@ public class Main {
                 Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);
                 t.start();
-                PlayerCLI pcli = new PlayerCLI(pla);
+                //PlayerCLI pcli = new PlayerCLI(pla);
+                Frame f = new Frame(pla);
                 t.stop();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -319,7 +321,8 @@ public class Main {
                 Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);
                 t.start();
-                PlayerCLI pcli = new PlayerCLI(pla);
+                Frame f = new Frame(pla);
+                //PlayerCLI pcli = new PlayerCLI(pla);
                 t.stop();
                 
             } catch (Exception e) {

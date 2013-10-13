@@ -1,11 +1,11 @@
 package gui;
 
+import logic.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,19 +21,28 @@ public class Container extends JPanel implements ActionListener {
 	private JButton	b1;
 	private JButton b2;
 	private JButton b3;
+        private Player p;
 	
-	public Container() {
+	public Container(Player p) {
+                this.p = p;
 		setLayout(new BorderLayout(5,5));
 		
 		stats = new JPanel();
 		stats.setBackground(Color.lightGray);
 		add(stats,BorderLayout.NORTH);
-		stats.add(new JLabel("name"));
+		stats.add(new JLabel("NAME: "));
+		stats.add(new JLabel(this.p.getDragon().getName()));
+                stats.add(new JLabel("     "));
+		stats.add(new JLabel("LEVEL: "));
+                stats.add(new JLabel("" + this.p.getDragon().getLevel()));
 		stats.add(new JLabel("     "));
-		stats.add(new JLabel("level"));
+		stats.add(new JLabel("EXP: "));
+                stats.add(new JLabel("" + this.p.getDragon().getExp()));
 		stats.add(new JLabel("     "));
-		stats.add(new JLabel("exp"));
-		
+		stats.add(new JLabel("HEALTH: "));
+                stats.add(new JLabel("" + this.p.getDragon().getHealth() + 
+                        "/" + this.p.getDragon().getMaxHealth()));
+                
 		buttons = new JPanel();
 		buttons.setLayout(new GridLayout(0, 1));
 		add(buttons, BorderLayout.WEST);
@@ -45,7 +54,7 @@ public class Container extends JPanel implements ActionListener {
 		add(main, BorderLayout.CENTER); 
 		
 		
-		view1 = new DragonUI();
+		view1 = new DragonUI(this.p.getDragon(), this.p.getPack());
 		main.add(view1, BorderLayout.CENTER);
 		
 		view2 = new PackUI();
