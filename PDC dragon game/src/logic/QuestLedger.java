@@ -67,7 +67,7 @@ public class QuestLedger {
     public String[] listCompleted()
     {
         String[] complete = new String[this.com.size()];
-        for(int i = 0; i < this.com.size() - 1; i++)
+        for(int i = 0; i <= this.com.size() - 1; i++)
         {
             complete[i] = this.com.get(i).getName();
         }
@@ -77,6 +77,6 @@ public class QuestLedger {
     @Override
     public String toString()
     {
-        return "" + this.com.size() + "\n";
+        return " , quest = " + this.com.size();
     }
 }

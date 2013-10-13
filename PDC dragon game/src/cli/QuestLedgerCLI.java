@@ -85,7 +85,7 @@ public class QuestLedgerCLI{
         }
         else{
             for (int i = 0; i < tempFin.length; i++){
-            System.out.println(i + ": " + tempFin[i]);
+            System.out.println(i+1 + ": " + tempFin[i]);
             }
         }
     }

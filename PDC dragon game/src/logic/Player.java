@@ -3,6 +3,10 @@ package logic;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,23 +90,33 @@ public class Player implements Runnable {
         this.stop = true;
     }
     
-    public void save() throws FileNotFoundException {
-        String save = "" + System.currentTimeMillis() + "\n";
+    public void save() {
+        String save = "UPDATE PDC.SAVE ";
         save += toString();
         save += getDragon().toString();
         save += getQuestLedger().toString();
         save += getPack().toString();
-        System.out.print(save);
-        PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
-        pw.println(save);
-        pw.close();
+        save += " WHERE id = 1";
+        try {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+            Statement stmt = con.createStatement();
+            //stmt.executeQuery(save);
+            stmt.execute(save);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        System.out.println(save);
+        //System.out.println(save.subSequence(0, 183));
+        //PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/save"));
+        //pw.println(save);
+        //pw.close();
     }
     
     @Override
     public String toString()
     {
-        String save = this.name;
-        save += "\n";
+        String save = "SET pname = \'" + this.name + "\'";
         return save;
     }
  

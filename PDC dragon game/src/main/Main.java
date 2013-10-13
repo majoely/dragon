@@ -81,17 +81,56 @@ public class Main {
                 int pacGold = save.getInt("gold");
                 String pName = save.getString("pname");
                 String tempItem = save.getString("items");
+                int qn = save.getInt("quest");
                 StringTokenizer st = new StringTokenizer(tempItem, ",");
                 ArrayList<Item> item = new ArrayList<>();
                 while (st.hasMoreElements()) {
                     ResultSet sqlItem = stmt.executeQuery("select * from PDC.ITEM where id = " + st.nextToken());
                     sqlItem.next();
-                    item.add(new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold")));
+                    item.add(new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold"), sqlItem.getInt("id")));
                 }
                 
                 Dragon dra = new Dragon(dName, dHealth, dMax, dDefense, dAttack, dExperience, dLevel, dHunger);
-                Pack pack = new Pack(pacGold, item);
-                Player pla = new Player(pName, pack, dra);
+                Pack pac = new Pack(pacGold, item);
+                QuestLedger ql = null;
+                ArrayList<Quest> quests = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    ResultSet quest = stmt.executeQuery("select * from PDC.QUEST where id = " + i);
+                    quest.next();
+                    System.out.println("quest loop");
+                    String qName = quest.getString("name");
+                    String qDesc = quest.getString("descript");
+                    String badGuys = quest.getString("badguy");
+                    ArrayList<Fight> qFight = new ArrayList<>();
+                    StringTokenizer tok = new StringTokenizer(badGuys, ",");
+                    //get the badguys
+                    while (tok.hasMoreElements()) {
+                        System.out.println("toker loop");
+                        Enemy en = null;
+                        ResultSet bg = stmt.executeQuery("select * from PDC.BADGUY where ID = " + tok.nextToken());
+                        bg.next();
+                        String bgName = bg.getString("name");
+                        int bgGold = bg.getInt("gold");
+                        int bgExp = bg.getInt("exp");
+                        String temItem = bg.getString("item");
+                        //if they have an item
+                        if (temItem != null) {
+                            ResultSet sqlItem = stmt.executeQuery("select * from PDC.ITEM where ID = " + temItem);
+                            sqlItem.next();
+                            Item bgItem = new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold"), sqlItem.getInt("id")); 
+                            en = new Enemy(bgName, bgGold, bgExp, bgItem);
+                        } else {
+                            en = new Enemy(bgName, bgGold, bgExp);
+                        }
+                        //create and add a fight
+                        qFight.add(new Fight(dra, en, pac));
+                    }
+                    //create and add a quest
+                    quests.add(new Quest(qName, qDesc, qFight));
+                }
+                ql = new QuestLedger(quests, qn);
+                
+                Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);
                 t.start();
                 PlayerCLI pcli = new PlayerCLI(pla);
@@ -234,7 +273,7 @@ public class Main {
                 item.next();
                 for (int i = 0; i < 3; i++) {
                     //create food and put in pack
-                    Item f = new Item(item.getString("name"), item.getString("descript"), item.getInt("gold"));
+                    Item f = new Item(item.getString("name"), item.getString("descript"), item.getInt("gold"), item.getInt("id"));
                     pac.addItem(f);
                 }
                 item = null;
@@ -264,7 +303,7 @@ public class Main {
                         if (tempItem != null) {
                             ResultSet sqlItem = stmt.executeQuery("select * from PDC.ITEM where ID = " + tempItem);
                             sqlItem.next();
-                            Item bgItem = new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold")); 
+                            Item bgItem = new Item(sqlItem.getString("name"), sqlItem.getString("descript"), sqlItem.getInt("gold"), sqlItem.getInt("id")); 
                             en = new Enemy(bgName, bgGold, bgExp, bgItem);
                         } else {
                             en = new Enemy(bgName, bgGold, bgExp);

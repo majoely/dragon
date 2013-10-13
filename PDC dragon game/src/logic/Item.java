@@ -8,9 +8,10 @@ package logic;
 public class Item {
     
     // All items will have these values
-    String name;
-    String description; 
-    int value;
+    protected int id;
+    protected String name;
+    protected String description; 
+    protected int value;
     
     /*
      * Constructor for Items
@@ -18,10 +19,11 @@ public class Item {
      * @param d, desccription of the item
      * @param v, value of the item
      */
-    public Item(String n, String d, int v){
+    public Item(String n, String d, int v, int id){
         this.name = n;
         this.description = d;
         this.value = v;
+        this.id = id;
     }
     
     /*
@@ -46,5 +48,9 @@ public class Item {
      */
     public int getValue(){
         return this.value;
+    }
+    
+    public int getID() {
+        return this.id;
     }
 }

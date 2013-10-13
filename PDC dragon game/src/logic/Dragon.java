@@ -193,14 +193,14 @@ public class Dragon {
     @Override
     public String toString()
     {
-        String save = name + "\n";
-        save += experience + "\n";
-        save += level + "\n";
-        save += maxHealth + "\n";
-        save += health + "\n";
-        save += attack + "\n";
-        save += defense + "\n";
-        save += hunger + "\n";
+        String save = " , dname = \'" + this.name + "\'";
+        save += " , exp = " + this.experience;
+        save += " , level = " + this.level;
+        save += " , mhealth = " +this.maxHealth;
+        save += " , health = " + this.health;
+        save += " , attack  = " + this.attack;
+        save += " , defense = " + this.defense;
+        save += " , hunger = " + this.hunger;
         return save;
     }
 }

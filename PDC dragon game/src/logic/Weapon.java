@@ -18,7 +18,7 @@ public class Weapon extends Item{
      */ 
     public Weapon(String name, String description, int value, int attackValue)
     {
-        super(name, description, value);
+        super(name, description, value, -1);
         this.value = value;
     }
     
