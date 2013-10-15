@@ -20,6 +20,7 @@ public class Weapon extends Item{
     {
         super(name, description, value, -1);
         this.value = value;
+        this.attackValue = attackValue;
     }
     
     /**

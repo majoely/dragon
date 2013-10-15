@@ -15,10 +15,18 @@ public class ItemTest{
     
     /**
      * List of completed tests for the Item Class and it's sub classes. Also some tests for Shop included.
+     * 
+     * Pack Tests:
      * - testAddItems
      * - testSellItems
      * - testGetGold
      * - testSelectedItem
+     * 
+     * Item super and subclass tests:
+     * - Food: getFeedValue
+     * - Weapon: attackValue
+     * - Item: getGoldValue
+     * 
      */
      
      public Item iTest;
@@ -71,5 +79,20 @@ public class ItemTest{
      @Test
      public void testGetGold(){
          assertEquals(bpTest.getGold(), 50);
+     }
+     
+     @Test
+     public void testFoodFeedValue(){
+         assertEquals(((Food)fTest).getFeedValue(), 2);
+     }
+     
+     @Test
+     public void testWeaponAttackValue(){
+         assertEquals(((Weapon)wTest).getAttackValue(), 3);
+     }
+     
+     @Test
+     public void getGoldValues(){
+         assertEquals(iTest.getValue(), 20);
      }
 }
