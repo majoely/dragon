@@ -17,9 +17,11 @@ import logic.Enemy;
 public class PlayerTest{
 
     /**
-     * This file includes test for Player, Pack, Quest and Questledger.
+     * This file includes tests for Player, Quest and QuestLedger
      * Compressed them together because of their reliance on a player object and it's requirement for them to be present in the constructor.
-     * Completed Test
+     * Completed Tests
+     * 
+     * Player:
      * - getNames
      * 
      */
@@ -68,4 +70,15 @@ public class PlayerTest{
         assertEquals("DemoD", pTest.getDragon().getName());
     }
   
+    
+    @Test
+    public void testWinFight(){
+        //Code winning a fight and testing that
+        //Can test finishing a quest this way too
+    }
+    
+    @Test
+    public void testQuestLedgerLists(){
+        //Code to test moving quest from one array to another
+    }
 }
