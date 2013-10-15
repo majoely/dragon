@@ -22,8 +22,12 @@ public class DragonTest{
      * Includes some tests for Enemy, Fight and Quest due to the reliance of a Dragon Object.
     * 
     * List of tests completed
-    * -
-    * 
+    * - fightDamage
+    * - basicAttack
+    * - AdvancedAttack
+    * - enemyBasicAttack
+    * - enemyAdvancedAttack
+    * - 
     * 
     */
     
@@ -45,20 +49,14 @@ public class DragonTest{
 
     @Test
     public void testDragonLeveling(){
-        dTest.addExp(30);
+        dTest.addExp(10);
         assertEquals(2, dTest.getLevel());
     }
     
     @Test
     public void testDragonFightTakeDmg(){
         dTest.takeDmg(5);
-        assertEquals(94, dTest.getHealth());    
-    }
-    
-    @Test
-    public void testBadDragonLoad(){
-        dTest = new Dragon(null, -2, -1, 5, 5, 0, 0, 0);
-        //apologies not totally sure what assert test to use here :/
+        assertEquals(96, dTest.getHealth());    
     }
     
     @Test

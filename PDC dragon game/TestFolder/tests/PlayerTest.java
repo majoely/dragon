@@ -19,7 +19,8 @@ public class PlayerTest{
     /**
      * This file includes test for Player, Pack, Quest and Questledger.
      * Compressed them together because of their reliance on a player object and it's requirement for them to be present in the constructor.
-     * -
+     * Completed Test
+     * - getNames
      * 
      */
 
@@ -64,7 +65,7 @@ public class PlayerTest{
     @Test
     public void testNames(){
         assertEquals("Player", pTest.getName());
-        assertEquals("Dragon", pTest.getDragon().getName());
+        assertEquals("DemoD", pTest.getDragon().getName());
     }
   
 }
