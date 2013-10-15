@@ -194,4 +194,12 @@ public class Fight {
             player.takeDmg(badGuy.giveDmg() + 5);
         }
     }
+    
+    public void addEnergy(){
+        pEnergy += 10;
+    }
+    
+    public void addBadEnergy(){
+        bgEnergy += 20;
+    }
 }
