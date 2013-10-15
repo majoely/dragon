@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import logic.Item;
+
 public class ItemTest{
     
     /**

@@ -1,5 +1,10 @@
 package tests;
 
+import logic.Dragon;
+import logic.Fight;
+import logic.Enemy;
+import logic.Pack;
+
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -27,7 +32,7 @@ public class DragonTest{
         dTest = new Dragon("DemoD");
         eTest = new Enemy("Enemy 1", 10, 20);
         fTest = new Fight(dTest, eTest, bpTest);
-        bpTest = new Pack();
+        bpTest = new Pack(20);
     }
     
     @After
@@ -40,7 +45,7 @@ public class DragonTest{
 
     @Test
     public void testDragonLeveling(){
-        dTest.addExp(30)
+        dTest.addExp(30);
         assertEquals(2, dTest.getLevel());
     }
     

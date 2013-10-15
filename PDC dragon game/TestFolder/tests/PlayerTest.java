@@ -1,9 +1,18 @@
 package tests;
 
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import logic.Player;
+import logic.Pack;
+import logic.Dragon;
+import logic.QuestLedger;
+import logic.Quest;
+import logic.Fight;
+import logic.Enemy;
 
 public class PlayerTest{
 
@@ -26,7 +35,7 @@ public class PlayerTest{
     
     @Before
     public void setUp(){
-        bpTest = new Pack();
+        bpTest = new Pack(20);
         dTest = new Dragon("DemoD");
         
         eTest = new Enemy("Enemy 1", 10, 20);
