@@ -2,6 +2,10 @@ package cli;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 import logic.*;
 
@@ -19,6 +23,7 @@ public class PackCLI {
         this.inventory = inventory;
         String[] com = {"help", "sell", "buy", "use", "list", "player"};
         this.commands = com;
+        /*
         File file = new File("src/file/tutorial/packTutorial");
         Scanner out = new Scanner(file);
         while (out.hasNext())
@@ -31,6 +36,15 @@ public class PackCLI {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+        }*/
+        try {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+            Statement stmt = con.createStatement();
+            ResultSet tut = stmt.executeQuery("select * from PDC.TUTORIAL where ID = 1");
+            tut.next();
+            System.out.print(tut.getString("tutor").replaceAll("\\\\n", "\n"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         this.commandInterface();
     }

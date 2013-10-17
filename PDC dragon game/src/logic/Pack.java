@@ -133,10 +133,11 @@ public class Pack {
     @Override
     public String toString()
     {
-        String save = this.gold + "\n";
+        String save = " , gold = " + this.gold;
+        save += " , items = \'";
         for (Item item : items) {
-            save += item.getName() + "\n";
+            save += item.getID() + ",";
         }
-        return save;
+        return save.substring(0, save.length()-1) + "\'";
     }
 }

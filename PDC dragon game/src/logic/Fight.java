@@ -149,7 +149,7 @@ public class Fight {
         }
     }
     
-    private void basicAttack(){
+    public void basicAttack(){
         if(pEnergy >= 2){
         System.out.println("Your Dragon dealt " + player.giveDmg() + " damage");
         badGuy.takeDmg(player.giveDmg());
@@ -162,7 +162,7 @@ public class Fight {
         }
     }
     
-    private void advancedAttack(){
+    public void advancedAttack(){
         if(pEnergy >= 10){
             pEnergy -= 7;
             int damage = player.giveDmg() + 10;
@@ -175,7 +175,7 @@ public class Fight {
         }
     }
     
-    private void defend(){
+    public void defend(){
         System.out.println(player.getName() + " takes a defensive stance");
         int damage = badGuy.giveDmg() + (player.getDef() * 2);
         player.takeDmg(damage);
@@ -183,7 +183,7 @@ public class Fight {
         bgEnergy += 3;
     }
     
-    private void enemyAttack(){
+    public void enemyAttack(){
         if(bgEnergy < 20){
         System.out.println(badGuy.getName() + " dealt " + badGuy.giveDmg() + " to your dragon");
         player.takeDmg(badGuy.giveDmg());
@@ -193,5 +193,13 @@ public class Fight {
             System.out.println(badGuy.getName() + " lunged at your dragon for more damage! He did " + badGuy.giveDmg() + 5);
             player.takeDmg(badGuy.giveDmg() + 5);
         }
+    }
+    
+    public void addEnergy(){
+        pEnergy += 10;
+    }
+    
+    public void addBadEnergy(){
+        bgEnergy += 20;
     }
 }

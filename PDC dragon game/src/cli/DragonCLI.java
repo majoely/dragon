@@ -6,6 +6,10 @@ package cli;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 import logic.*;
 
@@ -26,6 +30,7 @@ public class DragonCLI {
         this.p = p;
         String[] com = {"help", "feed", "play", "train", "info", "player"};
         this.commands = com;
+        /*
         File file = new File("src/file/tutorial/dragonTutorial");
         Scanner out = new Scanner(file);
         while (out.hasNext())
@@ -38,6 +43,15 @@ public class DragonCLI {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+        }*/
+        try {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+            Statement stmt = con.createStatement();
+            ResultSet tut = stmt.executeQuery("select * from PDC.TUTORIAL where ID = 0");
+            tut.next();
+            System.out.print(tut.getString("tutor").replaceAll("\\\\n", "\n"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         this.commandInterface();
     }
@@ -86,7 +100,7 @@ public class DragonCLI {
 
     private void feed() {
         String output = "";
-        Item i = p.selectItem("food");
+        Item i = p.selectItem("Food");
         if (i != null)
         {
             output += "You try to feed " + d.getName() + "\n";
@@ -106,7 +120,7 @@ public class DragonCLI {
         if (d.getLevel() > 0)
         {
             int xp = 5;
-            Item i = p.selectItem("toy");
+            Item i = p.selectItem("Toy");
             if (i != null)
             {
                 xp += 3;
@@ -126,7 +140,7 @@ public class DragonCLI {
         if (d.getLevel() > 2)
         {
             int xp = 8;
-            Item i = p.selectItem("toy");
+            Item i = p.selectItem("Chestplate");
             if (i != null)
             {
                 xp += 6;

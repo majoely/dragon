@@ -14,7 +14,7 @@ public class Food extends Item{
     
     public Food(String n, String d, int v, int fv)
     {
-        super(n,d,v);
+        super(n,d,v,-1);
         this.feedValue = fv;
     }
     

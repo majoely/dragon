@@ -15,7 +15,7 @@ public class Potion extends Item
      * when using this constructor to make a potion, set the value of variables not needed to 0 
      */
     public Potion(String n, String d, int v, int heal, int energize, int feedValue){
-        super (n, d, v);
+        super (n, d, v, -1);
         this.heal = heal;
         this.energize = energize;
         this.feedValue = feedValue;

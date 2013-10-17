@@ -1,6 +1,10 @@
 package logic;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -22,13 +26,18 @@ public class Shop{
          shopInventory = new ArrayList<>();
          for(int i = 0; i <= level; i++) {
              try {
+                 /*
                  File f = new File("src/file/item/item" + i);
                  Scanner in = new Scanner(f);
                  String name = in.nextLine();
                  String descript = in.nextLine();
-                 int value = Integer.parseInt(in.nextLine());
-                 addItem(new Item(name, descript, value));
-                 in.close();
+                 int value = Integer.parseInt(in.nextLine());*/
+                 Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+                 Statement stmt = con.createStatement();
+                 ResultSet item = stmt.executeQuery("select * from PDC.ITEM where ID = " + i);
+                 item.next();
+                 addItem(new Item(item.getString("name"), item.getString("descript"), item.getInt("gold"), item.getInt("id")));
+                 
              } catch (Exception e) {
                  e.printStackTrace();
              }

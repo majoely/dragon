@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +28,7 @@ public class PlayerCLI {
         this.p = p;
         String[] com = {"help", "name", "pack", "dragon", "quest", "save", "exit"};
         this.commands = com;
+        /*
         File file = new File("src/file/tutorial/playerTutorial");
         Scanner out = new Scanner(file);
         while (out.hasNext())
@@ -36,6 +41,15 @@ public class PlayerCLI {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+        }*/
+        try {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+            Statement stmt = con.createStatement();
+            ResultSet tut = stmt.executeQuery("select * from PDC.TUTORIAL where ID = 2");
+            tut.next();
+            System.out.print(tut.getString("tutor").replaceAll("\\\\n", "\n"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         this.commandInterface();
     }
@@ -72,7 +86,7 @@ public class PlayerCLI {
                                         ex.printStackTrace();
                                     }
                         break;
-                case "save" : save();
+                case "save" : this.p.save();
                                 
                     break;
                 default : System.out.println("Invalid command");
@@ -148,14 +162,6 @@ public class PlayerCLI {
         while (out.hasNext())
         {
             System.out.println(out.nextLine());
-        }
-    }
-    
-    private void save() {
-        try {
-            this.p.save();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         }
     }
 }
