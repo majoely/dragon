@@ -321,7 +321,7 @@ public class Main {
                 Player pla = new Player(pName, pac, dra, ql);
                 Thread t = new Thread(pla);
                 t.start();
-                Frame f = new Frame(pla);
+                //Frame f = new Frame(pla);
                 //PlayerCLI pcli = new PlayerCLI(pla);
                 t.stop();
                 
