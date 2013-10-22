@@ -221,7 +221,7 @@ public class Container extends JPanel {
     }
 
     private void pSwitch4() {
-        layout = new QuestOver();
+        layout = new QuestOver(pla.getQuestLedger().goToQuest());
     }
 
     private void pSwitch5() {

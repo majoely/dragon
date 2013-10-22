@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import logic.Quest;
 
 /**
  *
@@ -18,15 +19,12 @@ public class QuestOver extends Starter implements ActionListener{
     private JTextArea string;
     private JButton start;
     private JButton back;
+    private Quest q;
     
-    public QuestOver() {
-        String s = "Lorem ipsum dolor sit amet, consectetur " + 
-                "adipisicing elit, sed do \neiusmod tempor incididunt ut " + 
-                "labore et dolore magna aliqua. Ut \nenim ad minim veniam,  " +
-                "quis nostrud exercitation ullamco laboris \nnisi ut " + 
-                "aliquip ex ea commodo consequat. Duis aute irure dolor " + 
-                "in \nreprehenderit in voluptate velit esse cillum dolore " +
-                "eu fugiat nulla pariatur.";
+    public QuestOver(Quest q) {
+        
+        this.q = q;
+        String s = q.getName() + "\n" + q.getDescription();
         string = new JTextArea(s);
         string.setBounds(10, 10, texts.getWidth()-20, texts.getHeight()-20);
         string.setWrapStyleWord(true);
