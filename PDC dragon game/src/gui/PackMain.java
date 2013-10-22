@@ -100,7 +100,7 @@ public class PackMain extends GameTemp implements ActionListener{
         } else if (source == butt1) {
             System.out.println("use");
             Item temp = p.selectItem(talk.getText());
-            if(!temp.equals("null")){
+            if(temp != null){
                 p.useItem(temp);
                     this.talk.setText(p.getItemNumNoBo());
                 
@@ -119,12 +119,12 @@ public class PackMain extends GameTemp implements ActionListener{
             
             System.out.println("sell");
             Item temp = p.selectItem(talk.getText());
-            if(temp.equals("null")){
-                p.sellItem(temp);
-                talk.setText("You now have " + p.getGold() + " gold");
+            if(temp == null){
+                talk.setText("You don't own that - type cancel to continue");
             }
             else{
-                talk.setText("You don't own that - type cancel to continue");
+                p.sellItem(temp);
+                talk.setText("You now have " + p.getGold() + " gold");
             }
             repaint();
             
