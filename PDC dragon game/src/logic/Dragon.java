@@ -107,8 +107,8 @@ public class Dragon {
      * @param health, value to increase pool by
      */
     public void addMaxHealth(int health){
-        this.maxHealth =+ health;
-        this.health =+ health;
+        this.maxHealth += health;
+        this.health += health;
     }
     
     /*
@@ -122,10 +122,12 @@ public class Dragon {
     /*
      * Method for adding levels to the dragon
      */
-    public void addLevel(){
+    private void addLevel(){
         this.level++;
-        // TODO - add code to change dragons attributes
-        // Change this method to private perhaps? It isn't needed from outside.
+        this.maxHealth += 10;
+        this.health += 10;
+        this.attack += 2;
+        this.defense += 1;
     }
     
     /*
