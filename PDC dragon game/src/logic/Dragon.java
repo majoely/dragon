@@ -37,6 +37,19 @@ public class Dragon {
         this.levels = levs;
     }
     
+    public Dragon(){
+        this.name = "temp";
+        this.health = 100;
+        this.maxHealth = 100;
+        this.defense = 1;
+        this.attack = 5;
+        this.experience = 0;
+        this.level = 0;
+        this.hunger = 0;
+        int[] levs = {10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120};
+        this.levels = levs;
+    }
+    
     public Dragon(String name, int health, int maxH, int def, int att, int exp, int lev, int hung){
         this.name = name;
         this.health = health;

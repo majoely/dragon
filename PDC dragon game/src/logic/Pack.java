@@ -11,6 +11,7 @@ public class Pack {
     
     private int gold;
     private ArrayList<Item> items;
+    private int itemNum;
     
     /**
      * Constructor to make pack for player to hold their items
@@ -19,12 +20,14 @@ public class Pack {
      */ 
     public Pack(int gold)
     {
+        this.itemNum = 0;
         this.gold = gold;
         this.items = new ArrayList<>();
     }
     
     public Pack(int gold, ArrayList<Item> items)
     {
+        this.itemNum = 0;
         this.gold = gold;
         this.items = items;
     }
@@ -101,6 +104,7 @@ public class Pack {
     {
         this.items.add(item);
     }
+    
  
     /*
      * Method to get the names of the items the player currently caries
@@ -114,6 +118,25 @@ public class Pack {
             names[x] = temp.getName();
         }
         return names;
+    }
+    
+    public String getItemNumNoBo() {
+        return this.items.get(itemNum).getName();
+    }
+    
+    public String getItemNum(boolean fore) {
+        String ans = "";
+        if (fore) {
+            this.itemNum += 1;
+            ans += this.items.get(itemNum).getName();
+        } else {
+            this.itemNum -= 1;
+            System.out.println("num: " + itemNum);
+            if (itemNum < 0)
+                this.itemNum = this.items.size();
+            ans += this.items.get(itemNum).getName();
+        }
+        return ans;
     }
     
     public Item selectItem(String name){
