@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import logic.QuestLedger;
 
 /**
  *
@@ -18,14 +19,16 @@ public class QuestMain extends GameTemp implements ActionListener{
     private JLabel talk;
     private JButton butt1;
     private JButton butt2;
-    private JButton butt3;
     private JButton butt4;
     private JButton butt5;
+    private QuestLedger ql;
     
-    public QuestMain() {
+    public QuestMain(QuestLedger ql) {
         super();
         
-        talk = new JLabel("Display the name of the next quest.");
+        this.ql = ql;
+        
+        talk = new JLabel(ql.goToQuest().getName());
         talk.setLocation(10, 10);
         talk.setSize(texts.getWidth()-20, (texts.getHeight()/2)-15);
         texts.add(talk);
@@ -33,11 +36,13 @@ public class QuestMain extends GameTemp implements ActionListener{
         butt1 = new JButton("Info");
         butt1.setLocation(10, talk.getHeight()+20);
         butt1.setSize((texts.getWidth()-30)/2, talk.getHeight());
+        butt1.addActionListener(this);
         texts.add(butt1);
         
         butt2 = new JButton("Start");
         butt2.setLocation(butt1.getWidth()+20, talk.getHeight()+20);
         butt2.setSize((texts.getWidth()-30)/2, talk.getHeight());
+        butt2.addActionListener(this);
         texts.add(butt2);
         
         butt4 = new JButton("Dragon");
@@ -64,6 +69,10 @@ public class QuestMain extends GameTemp implements ActionListener{
             System.out.println("go to pack");
             Container cont = (gui.Container) this.getParent();
             cont.playSwitch(1);
+        } else if (source == butt1 || source == butt2) {
+            System.out.println("go to overview");
+            Container cont = (gui.Container) this.getParent();
+            cont.playSwitch(4);
         }
     }
 }

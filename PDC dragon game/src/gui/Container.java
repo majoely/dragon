@@ -213,7 +213,7 @@ public class Container extends JPanel {
     }
 
     private void pSwitch2() {
-        layout = new QuestMain();
+        layout = new QuestMain(pla.getQuestLedger());
     }
 
     private void pSwitch3() {
