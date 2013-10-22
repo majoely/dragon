@@ -121,19 +121,31 @@ public class Pack {
     }
     
     public String getItemNumNoBo() {
-        return this.items.get(itemNum).getName();
+        
+        String ans = "";
+        
+        if (itemNum >= this.items.size())
+            itemNum = 0;
+        if (this.items.isEmpty()) {
+            ans += "null";
+        } else {
+            ans += this.items.get(itemNum).getName();
+        }
+        return ans;
     }
     
     public String getItemNum(boolean fore) {
         String ans = "";
         if (fore) {
             this.itemNum += 1;
+            if (itemNum >= this.items.size())
+                this.itemNum = 0;
             ans += this.items.get(itemNum).getName();
         } else {
             this.itemNum -= 1;
             System.out.println("num: " + itemNum);
             if (itemNum < 0)
-                this.itemNum = this.items.size();
+                this.itemNum = this.items.size()-1;
             ans += this.items.get(itemNum).getName();
         }
         return ans;

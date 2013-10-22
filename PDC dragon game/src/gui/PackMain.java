@@ -100,14 +100,14 @@ public class PackMain extends GameTemp implements ActionListener{
         } else if (source == butt1) {
             System.out.println("use");
             Item temp = p.selectItem(talk.getText());
-            if(temp != null){
+            if(!temp.equals("null")){
                 p.useItem(temp);
-                this.talk.setText(p.getItemNumNoBo());
-            }
-            else{
+                    this.talk.setText(p.getItemNumNoBo());
+                
+            } else{
+                this.talk.setText("You can't use that");
+                repaint();
                 try {
-                    this.talk.setText("You can't use that");
-                    repaint();
                     Thread.sleep(2500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PackMain.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,21 +116,18 @@ public class PackMain extends GameTemp implements ActionListener{
             }
             repaint();
         } else if (source == butt2) {
-            try {
-                System.out.println("sell");
-                Item temp = p.selectItem(talk.getText());
-                if(temp != null){
-                    p.sellItem(temp);
-                    talk.setText("You now have " + p.getGold() + " gold");
-                }
-                else{
-                    talk.setText("You don't own that - type cancel to continue");
-                }
-                repaint();
-                Thread.sleep(2500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PackMain.class.getName()).log(Level.SEVERE, null, ex);
+            
+            System.out.println("sell");
+            Item temp = p.selectItem(talk.getText());
+            if(temp.equals("null")){
+                p.sellItem(temp);
+                talk.setText("You now have " + p.getGold() + " gold");
             }
+            else{
+                talk.setText("You don't own that - type cancel to continue");
+            }
+            repaint();
+            
             talk.setText(p.getItemNumNoBo());
             repaint();            
         } else if (source == butt3) {
