@@ -20,7 +20,7 @@ public class Shop{
      */
      
      private ArrayList<Item> shopInventory;
-     
+     private int itemNum;
      
      public Shop(int level){
          shopInventory = new ArrayList<>();
@@ -42,6 +42,7 @@ public class Shop{
                  e.printStackTrace();
              }
          }
+         this.itemNum = 0;
      }
      
      public void addItem(Item item){
@@ -70,6 +71,20 @@ public class Shop{
             names[x] = temp.getName();
         }
         return names;
+    }
+    
+    public String getItem(boolean fore) {
+        if (this.shopInventory.isEmpty())
+            return "null";
+        if (fore) 
+            itemNum++;
+        else
+            itemNum--;
+        if (itemNum >= this.shopInventory.size())
+            itemNum = 0;
+        if (itemNum < 0)
+            itemNum = this.shopInventory.size() -1;
+        return this.shopInventory.get(itemNum).name;
     }
     
 }

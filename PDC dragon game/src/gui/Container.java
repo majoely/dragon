@@ -176,6 +176,8 @@ public class Container extends JPanel {
                     quests.add(new Quest(qName, qDesc, qFight));
                 }
                 ql = new QuestLedger(quests);
+                if (ql == null)
+                    System.out.println("quest ledger is null");
                 //create player and start
                 pla = new Player(pac, dra, ql);
         } catch (Exception ex) {
@@ -217,7 +219,7 @@ public class Container extends JPanel {
     }
 
     private void pSwitch3() {
-        layout = new PackShop();
+        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel());
     }
 
     private void pSwitch4() {
@@ -225,7 +227,7 @@ public class Container extends JPanel {
     }
 
     private void pSwitch5() {
-        layout = new FightUI();
+        layout = new FightUI(pla.getQuestLedger().goToQuest(), pla.getQuestLedger());
     }
     
 }

@@ -4,14 +4,19 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import logic.Pack;
+import logic.Shop;
 
 /**
  *
  * @author msg8758
  */
-public class PackSell extends GameTemp {
+public class PackSell extends GameTemp implements ActionListener{
     
     private JLabel talk;
     private JButton butt1;
@@ -19,7 +24,7 @@ public class PackSell extends GameTemp {
     private JButton butt4;
     private JButton butt5;
     
-    public PackSell() {
+    public PackSell(Pack p) {
         super();
         
         talk = new JLabel("Sell/Buy item for $$");
@@ -46,6 +51,11 @@ public class PackSell extends GameTemp {
         butt5.setLocation(10, butt4.getHeight()+20);
         butt5.setSize(butt4.getWidth(), butt4.getHeight());
         buttons.add(butt5);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

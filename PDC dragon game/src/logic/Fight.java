@@ -103,11 +103,11 @@ public class Fight {
             System.out.print("Fight: ");
             input = in.nextLine();
             switch(input){
-                case "attack" : basicAttack();
+                case "attack" : System.out.println(basicAttack());
                     break;
-                case "firebreath" : advancedAttack();
+                case "firebreath" : System.out.println(advancedAttack());
                     break;
-                case "defend" : defend();
+                case "defend" : System.out.println(defend());
                     break;
                 default : System.out.println("You can't do that here!");
                     break;
@@ -117,12 +117,12 @@ public class Fight {
         }
         if(player.getHealth() <= 0)
         {
-        System.out.println("Your dragon has died, Game Over!");
+            System.out.println("Your dragon has died, Game Over!");
         } 
         else
         {
-        System.out.println("Your foe has been defeated, and you live to fight another day.");
-        System.out.print(player.addExp(badGuy.getExp()));
+            System.out.println("Your foe has been defeated, and you live to fight another day.");
+            System.out.print(player.addExp(badGuy.getExp()));
         try {
             Thread.sleep(1000);
         } 
@@ -149,50 +149,58 @@ public class Fight {
         }
     }
     
-    public void basicAttack(){
+    public String basicAttack(){
+        String ans = "";
         if(pEnergy >= 2){
-        System.out.println("Your Dragon dealt " + player.giveDmg() + " damage");
+        ans += "Your Dragon dealt " + player.giveDmg() + " damage";
         badGuy.takeDmg(player.giveDmg());
         pEnergy += 1;
         enemyAttack();
         bgEnergy += 3;
         }
         else{
-            System.out.println("You need 2 energy for this attack, you have " + pEnergy);
+            ans += "You need 2 energy for this attack, you have " + pEnergy;
         }
+        return ans;
     }
     
-    public void advancedAttack(){
+    public String  advancedAttack(){
+        String ans = "";
         if(pEnergy >= 10){
             pEnergy -= 7;
             int damage = player.giveDmg() + 10;
-            System.out.println("Your dragon dealt " + damage + " damage");
+            ans += "Your dragon dealt " + damage + " damage";
             badGuy.takeDmg(damage);
             bgEnergy += 5;
         }
         else{
-            System.out.println("You need 10 energy for this attack, you have " + pEnergy);
+            ans += "You need 10 energy for this attack, you have " + pEnergy;
         }
+        return ans;
     }
     
-    public void defend(){
-        System.out.println(player.getName() + " takes a defensive stance");
+    public String defend(){
+        String ans = "";
+        ans += player.getName() + " takes a defensive stance";
         int damage = badGuy.giveDmg() + (player.getDef() * 2);
         player.takeDmg(damage);
         pEnergy += 5;
         bgEnergy += 3;
+        return ans;
     }
     
-    public void enemyAttack(){
+    public String enemyAttack(){
+        String ans = "";
         if(bgEnergy < 20){
-        System.out.println(badGuy.getName() + " dealt " + badGuy.giveDmg() + " to your dragon");
+        ans += badGuy.getName() + " dealt " + badGuy.giveDmg() + " to your dragon";
         player.takeDmg(badGuy.giveDmg());
         }
         else{
             bgEnergy -= 20;
-            System.out.println(badGuy.getName() + " lunged at your dragon for more damage! He did " + badGuy.giveDmg() + 5);
+            ans += badGuy.getName() + " lunged at your dragon for more damage! He did " + badGuy.giveDmg() + 5;
             player.takeDmg(badGuy.giveDmg() + 5);
         }
+        return ans;
     }
     
     public void addEnergy(){
@@ -201,5 +209,21 @@ public class Fight {
     
     public void addBadEnergy(){
         bgEnergy += 20;
+    }
+    
+    public int getDragonEnergy() {
+        return pEnergy;
+    }
+    
+    public boolean finished() {
+        return (this.player.getHealth() <= 0 || this.badGuy.getHealth() <= 0);
+    }
+    
+    public Dragon getDragon() {
+        return this.player;
+    }
+    
+    public Enemy getEnemy() {
+        return this.badGuy;
     }
 }

@@ -55,6 +55,7 @@ public class QuestLedger {
      */
     public void popNext()
     {
+        System.out.println("pop");
         if(this.quest != null)
             this.com.add(this.quest);
         if (this.un.isEmpty())
