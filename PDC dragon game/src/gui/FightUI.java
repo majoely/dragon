@@ -154,7 +154,15 @@ public class FightUI extends JPanel implements ActionListener{
                 public void run() {
                     JOptionPane.showMessageDialog(null, "Your foes have been defeated!");
                 }});
-                ql.popNext();
+                if (ql.isNext()) {
+                    ql.popNext();
+                } else {
+                    EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, "You have now defeated all in the land.\nYou are now king.");
+                    }});
+                }
                 Container cont = (Container) this.getParent();
                 cont.playSwitch(2);
             }

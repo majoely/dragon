@@ -12,22 +12,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import logic.Player;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author msg8758
  */
-public class GameTemp extends JPanel{
+public class GameTemp extends JPanel implements ActionListener {
     protected JLabel title;
     protected JButton help;
     protected JPanel hold;
     protected JPanel texts;
     protected JPanel buttons;
+    public String helpText;
     
-    public GameTemp() {
+    public GameTemp(Sting helpText) {
         setLayout(new GroupLayout(this));
         setLocation(10, 10);
         setSize(574, 202);
+        this.helpText = helpText;
         
         title = new JLabel("");
         title.setLocation(0, 0);
@@ -61,5 +65,18 @@ public class GameTemp extends JPanel{
         buttons.setSize(120, 142);
         //buttons.setBackground(Color.LIGHT_GRAY);
         buttons.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source == help) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, this.parent().helpText);
+                }
+            });
+        }
     }
 }

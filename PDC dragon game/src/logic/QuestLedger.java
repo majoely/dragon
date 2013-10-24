@@ -75,6 +75,10 @@ public class QuestLedger {
         return complete;
     }
     
+    public boolean isNext() {
+        return !uQ.isEmpty();
+    }
+    
     @Override
     public String toString()
     {

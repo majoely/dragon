@@ -24,8 +24,8 @@ public class QuestMain extends GameTemp implements ActionListener{
     private JButton butt5;
     private QuestLedger ql;
     
-    public QuestMain(QuestLedger ql) {
-        super();
+    public QuestMain(QuestLedger ql, String h) {
+        super(h);
         
         this.ql = ql;
         

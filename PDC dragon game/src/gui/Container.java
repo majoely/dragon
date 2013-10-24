@@ -36,6 +36,10 @@ public class Container extends JPanel {
     private int x;
     private Player pla;
     private Statement stmt;
+    private String dragonHelp;
+    private String packmHelp;
+    private String packsHelp;
+    private String questHelp;
     
     public Container() {
         setLayout(new GroupLayout(this));
@@ -128,6 +132,15 @@ public class Container extends JPanel {
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
             stmt = con.createStatement();
+            ResultSet help = stmt.executeQuery("select * from PDC.GHELP");
+            help.next();
+            dragonHelp = help.getString("tutorial");
+            help.next();
+            packmHelp = help.getString("tutorial");
+            help.next();
+            packsHelp = help.getString("tutorial");
+            help.next();
+            questHelp = help.getString("tutorial");
             Dragon dra = new Dragon();
             Pack pac = new Pack(40);
                 ResultSet item = stmt.executeQuery("select * from PDC.ITEM where ID = 0");
@@ -207,19 +220,19 @@ public class Container extends JPanel {
     }
 
     private void pSwitch0() {
-        layout = new DragonUI(pla.getDragon(), pla.getPack());
+        layout = new DragonUI(pla.getDragon(), pla.getPack(), dragonHelp);
     }
 
     private void pSwitch1() {
-         layout = new PackMain(pla.getPack());
+         layout = new PackMain(pla.getPack(), packmHelp);
     }
 
     private void pSwitch2() {
-        layout = new QuestMain(pla.getQuestLedger());
+        layout = new QuestMain(pla.getQuestLedger(), questHelp);
     }
 
     private void pSwitch3() {
-        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel());
+        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel(), packsHelp);
     }
 
     private void pSwitch4() {

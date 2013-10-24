@@ -33,8 +33,8 @@ public class PackMain extends GameTemp implements ActionListener{
     private int itemNum;
     private int size;
     
-    public PackMain(Pack p) {
-        super();
+    public PackMain(Pack p, String h) {
+        super(h);
         
         this.p = p;
         this.itemNum = 0;
