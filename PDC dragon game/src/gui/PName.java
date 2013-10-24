@@ -27,6 +27,7 @@ public class PName extends Starter implements ActionListener{
         string.setBounds(10, 10, texts.getWidth()-20, texts.getHeight()-70);
         string.setWrapStyleWord(true);
         //string.setRows(10);
+        string.setLineWrap(true);
         string.setEditable(false);
         texts.add(string);
         

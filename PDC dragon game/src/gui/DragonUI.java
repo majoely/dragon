@@ -4,10 +4,12 @@
  */
 package gui;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import logic.Dragon;
 import logic.Item;
@@ -30,8 +32,8 @@ public class DragonUI extends GameTemp implements ActionListener{
     private Pack p;
     
     
-    public DragonUI(Dragon dra, Pack pac, String h) {
-        super(h);
+    public DragonUI(Player pla, Dragon dra, Pack pac, String h) {
+        super(pla, h);
         
         this.d = dra;
         this.p = pac;
@@ -139,6 +141,13 @@ public class DragonUI extends GameTemp implements ActionListener{
                 output += "Try again when you are level 3 or above\n";
             }
             this.talk.setText(output);
+        } else if (source == help) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, helpText);
+                }
+            });
         }
         repaint();
         revalidate();

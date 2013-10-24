@@ -28,6 +28,7 @@ public class DName extends Starter implements ActionListener{
         string.setWrapStyleWord(true);
         //string.setRows(10);
         string.setEditable(false);
+        string.setLineWrap(true);
         texts.add(string);
         
         name = new JTextField();

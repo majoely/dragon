@@ -31,6 +31,7 @@ public class QuestOver extends Starter implements ActionListener{
         string = new JTextArea(s);
         string.setBounds(10, 10, texts.getWidth()-20, texts.getHeight()-20);
         string.setWrapStyleWord(true);
+        string.setLineWrap(true);
         //string.setRows(10);
         string.setEditable(false);
         texts.add(string);

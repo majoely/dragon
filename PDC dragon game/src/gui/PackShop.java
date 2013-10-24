@@ -31,8 +31,8 @@ public class PackShop extends GameTemp implements ActionListener{
     private Pack p;
     private Shop s;
     
-    public PackShop(Pack p, int level, String h) {
-        super(h);
+    public PackShop(Player pla, Pack p, int level, String h) {
+        super(pla, h);
         System.out.println("level: " + level);
         this.p = p;
         this.s = new Shop(level);
@@ -107,6 +107,13 @@ public class PackShop extends GameTemp implements ActionListener{
                 }});
                 }
             }
+        }else if (source == help) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, helpText);
+                }
+            });
         }
         repaint();
         revalidate();

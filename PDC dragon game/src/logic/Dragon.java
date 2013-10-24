@@ -29,7 +29,7 @@ public class Dragon {
         this.health = 100;
         this.maxHealth = 100;
         this.defense = 1;
-        this.attack = 5;
+        this.attack = 2;
         this.experience = 0;
         this.level = 0;
         this.hunger = 0;
@@ -126,7 +126,7 @@ public class Dragon {
         this.level++;
         this.maxHealth += 10;
         this.health += 10;
-        this.attack += 2;
+        this.attack += 1;
         this.defense += 1;
     }
     

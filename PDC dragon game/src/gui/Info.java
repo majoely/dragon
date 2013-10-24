@@ -34,6 +34,7 @@ public class Info extends Starter implements ActionListener{
         string.setWrapStyleWord(true);
         //string.setRows(10);
         string.setEditable(false);
+        string.setLineWrap(true);
         texts.add(string);
         
         

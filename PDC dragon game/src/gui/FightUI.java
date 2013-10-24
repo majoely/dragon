@@ -62,7 +62,7 @@ public class FightUI extends JPanel implements ActionListener{
         dHealth.setSize((getWidth()/2)-5, 30);
         add(dHealth);
         
-        bdHealth = new JLabel("BadGuy: " + badguyH);
+        bdHealth = new JLabel(nextFight.getEnemy().getName() + ": " + badguyH);
         bdHealth.setLocation(dHealth.getWidth()+10, 0);
         bdHealth.setSize((getWidth()/2)-5, 30);
         add(bdHealth);
@@ -171,7 +171,7 @@ public class FightUI extends JPanel implements ActionListener{
         this.badguyH = nextFight.getEnemy().getHealth();
         bar.setValue(nextFight.getDragonEnergy());
         dHealth.setText("Dragon: " + dragonH);
-        bdHealth.setText("BadGuy: " + badguyH);
+        bdHealth.setText(nextFight.getEnemy().getName() + ": " + badguyH);
         bar.repaint();
         repaint();
         revalidate();

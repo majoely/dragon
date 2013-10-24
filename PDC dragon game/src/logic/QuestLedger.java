@@ -76,7 +76,7 @@ public class QuestLedger {
     }
     
     public boolean isNext() {
-        return !uQ.isEmpty();
+        return !un.isEmpty();
     }
     
     @Override

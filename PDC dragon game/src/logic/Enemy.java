@@ -38,6 +38,7 @@ public class Enemy {
         this.goldReward = goldReward;
         this.expReward = expReward;
         this.itemReward = itemReward;
+        checkStats();
     }
     
     /**
@@ -56,6 +57,7 @@ public class Enemy {
         this.goldReward = goldReward;
         this.expReward = expReward;
         this.itemReward = null;
+        checkStats();
     }
     
     /*
@@ -126,4 +128,54 @@ public class Enemy {
      {
          return !(this.itemReward == null);
      }
+
+    private void checkStats() {
+        switch (this.name) {
+            case "Dummy" :  this.attack=0;
+                            this.health=15;
+                            this.maxHealth=15;
+                            this.defense=2;
+                break;
+            case "Bandit" :   this.attack=2;
+                            this.health=20;
+                            this.maxHealth=20;
+                            this.defense=2;
+                break;
+            case "Knight" :   this.attack=4;
+                            this.health=30;
+                            this.maxHealth=30;
+                            this.defense=6;
+                break;
+            case "Bunny" :   this.attack=0;
+                            this.health=10;
+                            this.maxHealth=10;
+                            this.defense=0;
+                break;
+            case "Bandit Raider" :   this.attack=3;
+                            this.health=30;
+                            this.maxHealth=30;
+                            this.defense=2;
+                break;
+            case "Bandit King" :   this.attack=5;
+                            this.health=52;
+                            this.maxHealth=52;
+                            this.defense=4;
+                break;
+            case "Kings Guard" :   this.attack=13;
+                            this.health=80;
+                            this.maxHealth=80;
+                            this.defense=10;
+                break;
+            case "King Jeffry" :   this.attack=20;
+                            this.health=120;
+                            this.maxHealth=120;
+                            this.defense=6;
+                break;
+            case "Archer" :   this.attack=8;
+                            this.health=40;
+                            this.maxHealth=40;
+                            this.defense=3;
+                break;
+        }
+    }
 }

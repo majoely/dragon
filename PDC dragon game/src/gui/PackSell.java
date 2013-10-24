@@ -25,8 +25,8 @@ public class PackSell extends GameTemp implements ActionListener{
     private JButton butt4;
     private JButton butt5;
     
-    public PackSell(Pack p) {
-        super();
+    public PackSell(Player pla, Pack p, String h) {
+        super(pla, h);
         
         talk = new JLabel("Sell/Buy item for $$");
         talk.setLocation(10, 10);

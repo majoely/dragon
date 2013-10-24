@@ -20,8 +20,8 @@ public class PackMes extends GameTemp {
     private JButton butt4;
     private JButton butt5;
     
-    public PackMes() {
-        super();
+    public PackMes(Player pla, String h) {
+        super(pla, h);
         
         talk = new JLabel("You do not have enough to buy item");
         talk.setLocation(10, 10);

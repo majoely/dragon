@@ -4,10 +4,12 @@
  */
 package gui;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import logic.Player;
 import logic.QuestLedger;
 
@@ -24,8 +26,8 @@ public class QuestMain extends GameTemp implements ActionListener{
     private JButton butt5;
     private QuestLedger ql;
     
-    public QuestMain(QuestLedger ql, String h) {
-        super(h);
+    public QuestMain(Player pla, QuestLedger ql, String h) {
+        super(pla, h);
         
         this.ql = ql;
         
@@ -74,6 +76,13 @@ public class QuestMain extends GameTemp implements ActionListener{
             System.out.println("go to overview");
             Container cont = (gui.Container) this.getParent();
             cont.playSwitch(4);
+        }else if (source == help) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, helpText);
+                }
+            });
         }
         repaint();
         revalidate();

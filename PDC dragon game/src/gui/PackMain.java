@@ -4,12 +4,14 @@
  */
 package gui;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import logic.Item;
 import logic.Pack;
@@ -33,8 +35,8 @@ public class PackMain extends GameTemp implements ActionListener{
     private int itemNum;
     private int size;
     
-    public PackMain(Pack p, String h) {
-        super(h);
+    public PackMain(Player pla, Pack p, String h) {
+        super(pla, h);
         
         this.p = p;
         this.itemNum = 0;
@@ -146,6 +148,13 @@ public class PackMain extends GameTemp implements ActionListener{
             System.out.println("backward ");
             if (p.getSize() > 0)
                 this.talk.setText(p.getItemNum(false));
+        }else if (source == help) {
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, helpText);
+                }
+            });
         }
         repaint();
         revalidate();

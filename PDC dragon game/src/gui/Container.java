@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.GroupLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import logic.Dragon;
 import logic.Enemy;
@@ -40,12 +42,16 @@ public class Container extends JPanel {
     private String packmHelp;
     private String packsHelp;
     private String questHelp;
+    private Bonus b;
     
     public Container() {
         setLayout(new GroupLayout(this));
         createPlayer();
         x = 0;
         layoutSwitch();
+        b = new Bonus(pla.getPack());
+        Thread t = new Thread(b);
+        t.start();
     }
 
     public void layoutSwitch() {
@@ -120,7 +126,7 @@ public class Container extends JPanel {
         System.out.println("Switch 5");
         System.out.println(pla.getName());
         System.out.println(pla.getDragon().getName());
-        layout = new DragonUI(pla.getDragon(), pla.getPack());
+        layout = new DragonUI(pla, pla.getDragon(), pla.getPack(),dragonHelp );
     }
     
     public Player getPlayer() {
@@ -154,7 +160,7 @@ public class Container extends JPanel {
                 //create the ql, the quests and the fights with the bad guys. 
                 QuestLedger ql = null;
                 ArrayList<Quest> quests = new ArrayList<>();
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 10; i++) {
                     ResultSet quest = stmt.executeQuery("select * from PDC.QUEST where id = " + i);
                     quest.next();
                     System.out.println("quest loop");
@@ -196,6 +202,7 @@ public class Container extends JPanel {
         } catch (Exception ex) {
             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     public void playSwitch(int n) {
@@ -220,19 +227,19 @@ public class Container extends JPanel {
     }
 
     private void pSwitch0() {
-        layout = new DragonUI(pla.getDragon(), pla.getPack(), dragonHelp);
+        layout = new DragonUI(pla, pla.getDragon(), pla.getPack(), dragonHelp);
     }
 
     private void pSwitch1() {
-         layout = new PackMain(pla.getPack(), packmHelp);
+         layout = new PackMain(pla, pla.getPack(), packmHelp);
     }
 
     private void pSwitch2() {
-        layout = new QuestMain(pla.getQuestLedger(), questHelp);
+        layout = new QuestMain(pla, pla.getQuestLedger(), questHelp);
     }
 
     private void pSwitch3() {
-        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel(), packsHelp);
+        layout = new PackShop(pla, pla.getPack(), pla.getDragon().getLevel(), packsHelp);
     }
 
     private void pSwitch4() {
@@ -241,6 +248,31 @@ public class Container extends JPanel {
 
     private void pSwitch5() {
         layout = new FightUI(pla.getQuestLedger().goToQuest(), pla.getQuestLedger());
+    }
+    
+    public class Bonus implements Runnable {
+        
+        private Pack pac;
+        
+        public Bonus(Pack pac) {
+            this.pac = pac;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(300000);
+                } catch (Exception e) {
+                }
+                this.pac.addGold(15);
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, "Your uncle has just sent you a cheque worth 15 gold");
+                    }});
+            }
+        }
     }
     
 }

@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import logic.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,15 +27,18 @@ public class GameTemp extends JPanel implements ActionListener {
     protected JPanel hold;
     protected JPanel texts;
     protected JPanel buttons;
-    public String helpText;
+    protected String helpText;
+    protected Player pla;
     
-    public GameTemp(Sting helpText) {
+    public GameTemp(Player pla, String helpText) {
         setLayout(new GroupLayout(this));
         setLocation(10, 10);
         setSize(574, 202);
         this.helpText = helpText;
+        this.pla = pla;
+        title = new JLabel("Dragon: " + pla.getDragon().getName() + " Gold: " + pla.getPack().getGold() 
+                + " Level: " + pla.getDragon().getLevel() + " Exp: " + pla.getDragon().getExp());
         
-        title = new JLabel("");
         title.setLocation(0, 0);
         title.setSize(this.getWidth()-50, 30);
         add(title);
@@ -41,6 +46,7 @@ public class GameTemp extends JPanel implements ActionListener {
         help = new JButton("?");
         help.setLocation(this.getWidth()-40, 0);
         help.setSize(40, 30);
+        help.addActionListener(this);
         add(help);
         
         hold = new JPanel();
@@ -74,7 +80,7 @@ public class GameTemp extends JPanel implements ActionListener {
             EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    JOptionPane.showMessageDialog(null, this.parent().helpText);
+                    JOptionPane.showMessageDialog(null, helpText);
                 }
             });
         }
