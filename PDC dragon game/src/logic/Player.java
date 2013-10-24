@@ -38,6 +38,15 @@ public class Player implements Runnable {
         this.stop = false;
     }
     
+    public Player(Pack pack, Dragon dragon, QuestLedger ql)
+    {
+        this.name = "temp";
+        this.pack = pack;
+        this.dragon = dragon;
+        this.ql = ql;
+        this.stop = false;
+    }
+    
     /**
      * Constructor to create player
      * @param name Name of the Player
@@ -54,6 +63,10 @@ public class Player implements Runnable {
     public String getName()
     {
         return this.name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
     
     public Pack getPack()

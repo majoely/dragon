@@ -85,4 +85,12 @@ public class Quest {
     {
         this.complete = true;
     }
+    
+    public boolean isNext() {
+        return !fights.isEmpty();
+    }
+    
+    public Fight getNext() {
+        return fights.remove(0);
+    }
 }

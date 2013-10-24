@@ -55,6 +55,7 @@ public class QuestLedger {
      */
     public void popNext()
     {
+        System.out.println("pop");
         if(this.quest != null)
             this.com.add(this.quest);
         if (this.un.isEmpty())
@@ -72,6 +73,10 @@ public class QuestLedger {
             complete[i] = this.com.get(i).getName();
         }
         return complete;
+    }
+    
+    public boolean isNext() {
+        return !uQ.isEmpty();
     }
     
     @Override
