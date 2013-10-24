@@ -30,6 +30,7 @@ public class PackMain extends GameTemp implements ActionListener{
     private JButton butt5;
     private Pack p;
     private int itemNum;
+    private int size;
     
     public PackMain(Pack p) {
         super();
@@ -99,36 +100,39 @@ public class PackMain extends GameTemp implements ActionListener{
             cont.playSwitch(2);
         } else if (source == butt1) {
             System.out.println("use");
-            Item temp = p.selectItem(talk.getText());
-            if(temp != null){
-                p.useItem(temp);
+            if (p.getSize() > 0) {
+                Item temp = p.selectItem(talk.getText());
+                if(temp != null){
+                    p.useItem(temp);
+                        this.talk.setText(p.getItemNumNoBo());
+
+                } else{
+                    this.talk.setText("You can't use that");
+                    repaint();
+                    try {
+                        Thread.sleep(2500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(PackMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     this.talk.setText(p.getItemNumNoBo());
-                
-            } else{
-                this.talk.setText("You can't use that");
-                repaint();
-                try {
-                    Thread.sleep(2500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(PackMain.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                this.talk.setText(p.getItemNumNoBo());
             }
             repaint();
         } else if (source == butt2) {
-            
             System.out.println("sell");
-            Item temp = p.selectItem(talk.getText());
-            if(temp == null){
-                talk.setText("You don't own that - type cancel to continue");
+            if (p.getSize() > 0) {
+                Item temp = p.selectItem(talk.getText());
+                if(temp == null){
+                    talk.setText("You don't own that - type cancel to continue");
+                }
+                else{
+                    p.sellItem(temp);
+                    talk.setText("You now have " + p.getGold() + " gold");
+                }
+                repaint();
+
+                talk.setText(p.getItemNumNoBo());
             }
-            else{
-                p.sellItem(temp);
-                talk.setText("You now have " + p.getGold() + " gold");
-            }
-            repaint();
-            
-            talk.setText(p.getItemNumNoBo());
             repaint();            
         } else if (source == butt3) {
             System.out.println("go to shop");
@@ -136,11 +140,13 @@ public class PackMain extends GameTemp implements ActionListener{
             cont.playSwitch(3);            
         } else if (source == forward) {
             System.out.println("forward ");
-            this.talk.setText(p.getItemNum(true));
+            if (p.getSize() > 0) 
+                this.talk.setText(p.getItemNum(true));
             repaint();
         } else if (source == back) {
             System.out.println("backward ");
-            this.talk.setText(p.getItemNum(false));
+            if (p.getSize() > 0)
+                this.talk.setText(p.getItemNum(false));
             repaint();
         }
     }

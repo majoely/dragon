@@ -151,6 +151,10 @@ public class Pack {
         return ans;
     }
     
+    public int getSize() {
+        return this.items.size();
+    }
+    
     public Item selectItem(String name){
         //System.out.println("select");
         Iterator it = this.items.iterator();
