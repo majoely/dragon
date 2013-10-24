@@ -75,6 +75,7 @@ public class PlayerTest{
     public void testWinFight(){
         //Code winning a fight and testing that
         //Can test finishing a quest this way too
+        //Also add code to check that the Dragons health, exp etc is updated and saved correctly
     }
     
     @Test

@@ -50,7 +50,7 @@ public class DragonTest{
     @Test
     public void testDragonLeveling(){
         dTest.addExp(10);
-        assertEquals(2, dTest.getLevel());
+        assertEquals(1, dTest.getLevel());
     }
     
     @Test
