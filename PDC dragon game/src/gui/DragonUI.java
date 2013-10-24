@@ -30,8 +30,8 @@ public class DragonUI extends GameTemp implements ActionListener{
     private Pack p;
     
     
-    public DragonUI(Dragon dra, Pack pac) {
-        super();
+    public DragonUI(Dragon dra, Pack pac, String h) {
+        super(h);
         
         this.d = dra;
         this.p = pac;

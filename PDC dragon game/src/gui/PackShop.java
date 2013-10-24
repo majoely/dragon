@@ -31,8 +31,8 @@ public class PackShop extends GameTemp implements ActionListener{
     private Pack p;
     private Shop s;
     
-    public PackShop(Pack p, int level) {
-        super();
+    public PackShop(Pack p, int level, String h) {
+        super(h);
         System.out.println("level: " + level);
         this.p = p;
         this.s = new Shop(level);

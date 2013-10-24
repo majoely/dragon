@@ -220,19 +220,19 @@ public class Container extends JPanel {
     }
 
     private void pSwitch0() {
-        layout = new DragonUI(pla.getDragon(), pla.getPack());
+        layout = new DragonUI(pla.getDragon(), pla.getPack(), dragonHelp);
     }
 
     private void pSwitch1() {
-         layout = new PackMain(pla.getPack());
+         layout = new PackMain(pla.getPack(), packmHelp);
     }
 
     private void pSwitch2() {
-        layout = new QuestMain(pla.getQuestLedger());
+        layout = new QuestMain(pla.getQuestLedger(), questHelp);
     }
 
     private void pSwitch3() {
-        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel());
+        layout = new PackShop(pla.getPack(), pla.getDragon().getLevel(), packsHelp);
     }
 
     private void pSwitch4() {
