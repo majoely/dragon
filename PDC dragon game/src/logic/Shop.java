@@ -39,7 +39,7 @@ public class Shop{
                  addItem(new Item(item.getString("name"), item.getString("descript"), item.getInt("gold"), item.getInt("id")));
                  
              } catch (Exception e) {
-                 e.printStackTrace();
+                 System.out.println("sql error (probably)");
              }
          }
          this.itemNum = 0;
@@ -74,6 +74,8 @@ public class Shop{
     }
     
     public String getItem(boolean fore) {
+        for (Item i : shopInventory)
+            System.out.println(i.name);
         if (this.shopInventory.isEmpty())
             return "null";
         if (fore) 

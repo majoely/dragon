@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import logic.Dragon;
 import logic.Item;
 import logic.Pack;
+import logic.Player;
 
 /**
  *
@@ -119,7 +120,6 @@ public class DragonUI extends GameTemp implements ActionListener{
                 output += "Try again when you are level 1 or above\n";
             }
             this.talk.setText(output);
-            repaint();
         } else if (source == butt3) {
             System.out.println("train");
             String output = "";
@@ -139,7 +139,8 @@ public class DragonUI extends GameTemp implements ActionListener{
                 output += "Try again when you are level 3 or above\n";
             }
             this.talk.setText(output);
-            repaint();
         }
+        repaint();
+        revalidate();
     }
 }

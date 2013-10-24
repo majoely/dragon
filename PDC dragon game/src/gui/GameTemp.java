@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import logic.Player;
 
 /**
  *
@@ -28,7 +29,7 @@ public class GameTemp extends JPanel{
         setLocation(10, 10);
         setSize(574, 202);
         
-        title = new JLabel("   Name: name Level: lvl Exp: exp Gold: $$");
+        title = new JLabel("");
         title.setLocation(0, 0);
         title.setSize(this.getWidth()-50, 30);
         add(title);

@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -140,12 +141,12 @@ public class FightUI extends JPanel implements ActionListener{
         }
         if (nextFight.finished()) {
             if (q.isNext()) {
-                nextFight = q.getNext();
                 EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    JOptionPane.showMessageDialog(null, "Another enemy attack");
+                    JOptionPane.showMessageDialog(null, nextFight.getReward() + "Another enemy attack");
                 }});
+                nextFight = q.getNext();
             }else {
                 q.complete();
                 EventQueue.invokeLater(new Runnable() {
@@ -165,6 +166,7 @@ public class FightUI extends JPanel implements ActionListener{
         bdHealth.setText("BadGuy: " + badguyH);
         bar.repaint();
         repaint();
+        revalidate();
         
     }
 }

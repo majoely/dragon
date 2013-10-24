@@ -57,7 +57,7 @@ public class Dragon {
         this.defense = def;
         this.attack = att;
         this.experience = exp;
-        this.level = 5;
+        this.level = lev;
         this.hunger = hung;
         int[] levs = {10, 20, 40, 80, 160, 320, 640, 1280, 2560, 5120};
         this.levels = levs;

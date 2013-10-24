@@ -226,4 +226,20 @@ public class Fight {
     public Enemy getEnemy() {
         return this.badGuy;
     }
+    
+    public String getReward() {
+        String ans = "";
+        ans += "You have received " + badGuy.getGold() + " gold!\n";
+        pack.addGold(badGuy.getGold());
+        if (badGuy.hasItem())
+        {
+            ans += "You have recieved " + badGuy.getItem().getName() + "\n";
+            pack.addItem(badGuy.getItem());
+        }
+        else
+        {
+            ans += "You have recieved no item from this foe\n";
+        }
+        return ans;
+    }
 }

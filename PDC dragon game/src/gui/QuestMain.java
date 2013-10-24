@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import logic.Player;
 import logic.QuestLedger;
 
 /**
@@ -74,5 +75,7 @@ public class QuestMain extends GameTemp implements ActionListener{
             Container cont = (gui.Container) this.getParent();
             cont.playSwitch(4);
         }
+        repaint();
+        revalidate();
     }
 }

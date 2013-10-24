@@ -4,9 +4,11 @@
  */
 package gui;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import logic.Quest;
 
@@ -20,9 +22,10 @@ public class QuestOver extends Starter implements ActionListener{
     private JButton start;
     private JButton back;
     private Quest q;
+    private int level;
     
-    public QuestOver(Quest q) {
-        
+    public QuestOver(Quest q, int level) {
+        this.level = level;
         this.q = q;
         String s = q.getName() + "\n" + q.getDescription();
         string = new JTextArea(s);
@@ -50,8 +53,16 @@ public class QuestOver extends Starter implements ActionListener{
         Object source = e.getSource();
         if (source == start) {
             System.out.println("start");
-            Container cont = (Container) getParent();
-            cont.playSwitch(5);
+            if (level < 5) {
+                EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Your dragon is too young to go on quests.");
+                }});
+            }else {
+                Container cont = (Container) getParent();
+                cont.playSwitch(5);
+            }
         } else if (source == back) {
             System.out.println("back");
             Container cont = (Container) getParent();

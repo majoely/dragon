@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import logic.Item;
 import logic.Pack;
+import logic.Player;
 
 /**
  *
@@ -129,7 +130,6 @@ public class PackMain extends GameTemp implements ActionListener{
                     p.sellItem(temp);
                     talk.setText("You now have " + p.getGold() + " gold");
                 }
-                repaint();
 
                 talk.setText(p.getItemNumNoBo());
             }
@@ -142,12 +142,12 @@ public class PackMain extends GameTemp implements ActionListener{
             System.out.println("forward ");
             if (p.getSize() > 0) 
                 this.talk.setText(p.getItemNum(true));
-            repaint();
         } else if (source == back) {
             System.out.println("backward ");
             if (p.getSize() > 0)
                 this.talk.setText(p.getItemNum(false));
-            repaint();
         }
+        repaint();
+        revalidate();
     }
 }

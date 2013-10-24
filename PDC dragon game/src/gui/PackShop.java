@@ -4,13 +4,16 @@
  */
 package gui;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import logic.Item;
 import logic.Pack;
+import logic.Player;
 import logic.Shop;
 
 /**
@@ -30,7 +33,7 @@ public class PackShop extends GameTemp implements ActionListener{
     
     public PackShop(Pack p, int level) {
         super();
-        
+        System.out.println("level: " + level);
         this.p = p;
         this.s = new Shop(level);
         
@@ -93,14 +96,20 @@ public class PackShop extends GameTemp implements ActionListener{
         } else if (source == butt1) {
             System.out.println("buy");
             if (!talk.getText().equals("null")) {
-                Item temp = p.selectItem(talk.getText());
+                Item temp = s.findItem(talk.getText());
                 if (p.getGold() > (temp.getValue()*1.2)) {
                     p.buyItem(temp);
                 } else {
-                    System.out.println("no money fool");
+                    EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "You have run out of money\n you can wait for your next cheque from dad\n or go on a quest");
+                }});
                 }
             }
         }
+        repaint();
+        revalidate();
     }
     
 }
