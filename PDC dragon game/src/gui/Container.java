@@ -132,7 +132,15 @@ public class Container extends JPanel {
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
             stmt = con.createStatement();
-            
+            ResultSet help = stmt.executeQuery("select * from PDC.GHELP");
+            help.next();
+            dragonHelp = help.getString("tutorial");
+            help.next();
+            packmHelp = help.getString("tutorial");
+            help.next();
+            packsHelp = help.getString("tutorial");
+            help.next();
+            questHelp = help.getString("tutorial");
             Dragon dra = new Dragon();
             Pack pac = new Pack(40);
                 ResultSet item = stmt.executeQuery("select * from PDC.ITEM where ID = 0");
