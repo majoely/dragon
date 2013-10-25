@@ -94,6 +94,8 @@ public class Dragon {
      */
     public void takeDmg(int incoming){
         int dmg = incoming - this.defense;
+        if (dmg < 0)
+            dmg = 0;
         this.health -= dmg;
     }
     
