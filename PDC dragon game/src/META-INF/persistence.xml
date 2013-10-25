@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PDC_dragon_gamePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>DragonData.Quest</class>
+    <class>DragonData.Save</class>
+    <class>DragonData.Tutorial</class>
+    <class>DragonData.Ghelp2</class>
+    <class>DragonData.Item</class>
+    <class>DragonData.Badguy</class>
+    <class>DragonData.Intro</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/dragon"/>
+      <property name="javax.persistence.jdbc.password" value="pdc"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="pdc"/>
+    </properties>
+  </persistence-unit>
+</persistence>

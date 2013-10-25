@@ -43,6 +43,7 @@ public class Container extends JPanel {
     private String packsHelp;
     private String questHelp;
     private Bonus b;
+    public boolean questsFinished;
     
     public Container() {
         setLayout(new GroupLayout(this));
@@ -51,6 +52,7 @@ public class Container extends JPanel {
         layoutSwitch();
         b = new Bonus(pla.getPack());
         Thread t = new Thread(b);
+        questsFinished = false;
         t.start();
     }
 
@@ -136,17 +138,18 @@ public class Container extends JPanel {
     private void createPlayer() {
         
         try {
-            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon", "pdc", "pdc");
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/dragon;create=true", "pdc", "pdc");
             stmt = con.createStatement();
-            ResultSet help = stmt.executeQuery("select * from PDC.GHELP");
+            ResultSet help = stmt.executeQuery("select * from PDC.GHELP2");
             help.next();
-            dragonHelp = help.getString("tutorial");
+            dragonHelp = help.getString("tutorial").replaceAll("\\\\n", "\n");
             help.next();
-            packmHelp = help.getString("tutorial");
+            packmHelp = help.getString("tutorial").replaceAll("\\\\n", "\n");
             help.next();
-            packsHelp = help.getString("tutorial");
+            packsHelp = help.getString("tutorial").replaceAll("\\\\n", "\n");
             help.next();
-            questHelp = help.getString("tutorial");
+            questHelp = help.getString("tutorial").replaceAll("\\\\n", "\n");
             Dragon dra = new Dragon();
             Pack pac = new Pack(40);
                 ResultSet item = stmt.executeQuery("select * from PDC.ITEM where ID = 0");
@@ -235,7 +238,16 @@ public class Container extends JPanel {
     }
 
     private void pSwitch2() {
-        layout = new QuestMain(pla, pla.getQuestLedger(), questHelp);
+        if (!questsFinished) {
+            layout = new QuestMain(pla, pla.getQuestLedger(), questHelp);
+        } else {
+            EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, "You have finished the game no more questing");
+                    }});
+            layout = new DragonUI(pla, pla.getDragon(), pla.getPack(), dragonHelp); 
+        }
     }
 
     private void pSwitch3() {

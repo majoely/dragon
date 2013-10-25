@@ -38,7 +38,7 @@ public class DragonUI extends GameTemp implements ActionListener{
         this.d = dra;
         this.p = pac;
         
-        talk = new JTextArea("Dragon menu updating what is happening");
+        talk = new JTextArea("What would you like to do");
         talk.setLocation(10, 10);
         talk.setSize(texts.getWidth()-20, (texts.getHeight()/2)-15);
         talk.setEditable(false);
